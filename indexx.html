@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcademiaPulse | College Performance & Statistical Analytics</title>
+    <meta name="description"
+        content="AcademiaPulse is a statistical analytics web dashboard for college departments and placement cells to analyze student performance metrics and perform predictive analytics.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Outfit', 'Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f3ff',
+                            100: '#e0e7ff',
+                            400: '#818cf8',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#1e1b4b',
+                        },
+                        darkbg: '#0b0f19',
+                        cardbg: 'rgba(17, 24, 39, 0.75)',
+                    },
+                    boxShadow: {
+                        glow: '0 0 25px -5px rgba(99, 102, 241, 0.25)',
+                        'glow-emerald': '0 0 25px -5px rgba(16, 185, 129, 0.25)',
+                        'glow-violet': '0 0 25px -5px rgba(139, 92, 246, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            background-color: #0b0f19;
+            background-image:
+                radial-gradient(at 10% 10%, rgba(99, 102, 241, 0.08) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(139, 92, 246, 0.08) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: #f3f4f6;
+        }
+
+        .glass-card {
+            background: rgba(17, 24, 39, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card-hover:hover {
+            transform: translateY(-2px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 10px 30px -10px rgba(99, 102, 241, 0.2);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0b0f19;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #374151;
+            border-radius: 9999px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #4f46e5;
+        }
+
+        /* Input Slider styling */
+        input[type=range] {
+            accent-color: #6366f1;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased min-h-screen pb-12">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-50 glass-card border-b border-slate-800/80 mb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div
+                    class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-violet-500 flex items-center justify-center text-white shadow-lg shadow-brand-500/30">
+                    <i class="fa-solid font-bold fa-graduation-cap text-2xl"></i>
+                </div>
+                <div>
+                    <h1
+                        class="text-2xl font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-200 to-brand-400">
+                        AcademiaPulse
+                    </h1>
+                    <p class="text-xs font-medium text-slate-400">College Performance &amp; Statistical Analytics
+                        Dashboard</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <div
+                    class="hidden sm:flex items-center px-3 py-1.5 rounded-full bg-slate-800/80 border border-slate-700/60 text-xs font-semibold text-brand-400">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-2"></span>
+                    Live Analytics Engine Active
+                </div>
+                <button id="btn-export-data"
+                    class="px-4 py-2 text-xs font-semibold rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/70 transition flex items-center gap-2">
+                    <i class="fa-solid fa-download text-brand-400"></i> Export CSV
+                </button>
+                <button id="btn-reset-filters"
+                    class="px-4 py-2 text-xs font-semibold rounded-xl bg-brand-600 hover:bg-brand-500 text-white shadow-md shadow-brand-600/30 transition flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-left"></i> Reset
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+
+        <!-- Controls & Filters Section -->
+        <section class="glass-card rounded-2xl p-6 shadow-xl relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none">
+            </div>
+
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <i class="fa-solid fa-sliders text-brand-400 text-sm"></i>
+                        <h2 class="text-base font-bold text-slate-100">Interactive Cohort Filter Panel</h2>
+                    </div>
+                    <p class="text-xs text-slate-400">Adjust parameters below to dynamically re-evaluate statistical
+                        metrics &amp; linear regressions.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 flex-1 max-w-4xl">
+                    <!-- Slider Filter: Minimum Attendance -->
+                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800/80">
+                        <div class="flex justify-between items-center mb-2">
+                            <label for="filter-attendance" class="text-xs font-semibold text-slate-300">Min. Attendance
+                                Threshold</label>
+                            <span id="val-attendance"
+                                class="text-xs font-bold text-brand-400 px-2.5 py-0.5 rounded-full bg-brand-900/60 border border-brand-500/30">60%</span>
+                        </div>
+                        <input type="range" id="filter-attendance" min="50" max="90" value="60" step="1"
+                            class="w-full h-2 bg-slate-800 rounded-lg appearance-none cursor-pointer">
+                        <div class="flex justify-between text-[10px] text-slate-500 mt-1">
+                            <span>50%</span>
+                            <span>70%</span>
+                            <span>90%</span>
+                        </div>
+                    </div>
+
+                    <!-- Dropdown Filter: Department -->
+                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800/80">
+                        <label for="filter-dept" class="block text-xs font-semibold text-slate-300 mb-2">Target Academic
+                            Department</label>
+                        <div class="relative">
+                            <select id="filter-dept"
+                                class="w-full bg-slate-800 border border-slate-700/80 rounded-lg px-3 py-2 text-xs font-medium text-slate-200 focus:outline-none focus:border-brand-500 appearance-none">
+                                <option value="ALL">All Departments (Batch Total)</option>
+                                <option value="Statistics">Department of Statistics</option>
+                                <option value="Computer Science">Department of Computer Science</option>
+                                <option value="Data Science">Department of Data Science</option>
+                                <option value="Mathematics">Department of Mathematics</option>
+                            </select>
+                            <i
+                                class="fa-solid fa-chevron-down absolute right-3 top-3 text-slate-400 text-xs pointer-events-none"></i>
+                        </div>
+                    </div>
+
+                    <!-- Quick Preset Badges -->
+                    <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800/80 flex flex-col justify-center">
+                        <span class="text-xs font-semibold text-slate-300 mb-2">Quick Cohort Selectors</span>
+                        <div class="flex flex-wrap gap-2">
+                            <button data-preset="all"
+                                class="preset-btn px-2.5 py-1 text-[11px] font-medium rounded-lg bg-brand-600 text-white transition">All</button>
+                            <button data-preset="high"
+                                class="preset-btn px-2.5 py-1 text-[11px] font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">High
+                                Att. (&ge;80%)</button>
+                            <button data-preset="risk"
+                                class="preset-btn px-2.5 py-1 text-[11px] font-medium rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 transition">At-Risk
+                                (&lt;70%)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Overview Cards (4 Key Metrics) -->
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Metric Card 1: Total Students -->
+            <div class="glass-card glass-card-hover rounded-2xl p-6 relative overflow-hidden">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Total Filtered Cohort</span>
+                    <div
+                        class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center">
+                        <i class="fa-solid fa-users text-lg"></i>
+                    </div>
+                </div>
+                <div class="flex items-baseline space-x-2">
+                    <span id="metric-total-students" class="text-3xl font-extrabold text-white">250</span>
+                    <span class="text-xs text-slate-400">Students</span>
+                </div>
+                <div class="mt-3 flex items-center text-xs text-emerald-400 font-medium">
+                    <i class="fa-solid fa-circle-check mr-1.5 text-[10px]"></i>
+                    <span id="metric-cohort-pct">100% of batch dataset</span>
+                </div>
+            </div>
+
+            <!-- Metric Card 2: Mean Batch GPA -->
+            <div class="glass-card glass-card-hover rounded-2xl p-6 relative overflow-hidden">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Mean Batch GPA</span>
+                    <div
+                        class="w-10 h-10 rounded-xl bg-violet-500/10 border border-violet-500/20 text-violet-400 flex items-center justify-center">
+                        <i class="fa-solid fa-chart-line text-lg"></i>
+                    </div>
+                </div>
+                <div class="flex items-baseline space-x-2">
+                    <span id="metric-mean-gpa" class="text-3xl font-extrabold text-white">8.20</span>
+                    <span class="text-xs text-slate-400">/ 10.0</span>
+                </div>
+                <div class="mt-3 flex items-center text-xs text-slate-300 font-medium">
+                    <span class="text-slate-400 mr-1">Grade Standard:</span>
+                    <span id="metric-gpa-grade"
+                        class="px-2 py-0.5 rounded bg-violet-950 text-violet-300 border border-violet-800/50 font-semibold text-[10px]">Very
+                        Good</span>
+                </div>
+            </div>
+
+            <!-- Metric Card 3: Standard Deviation of Scores -->
+            <div class="glass-card glass-card-hover rounded-2xl p-6 relative overflow-hidden">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Score Std Deviation</span>
+                    <div
+                        class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                        <i class="fa-solid fa-calculator text-lg"></i>
+                    </div>
+                </div>
+                <div class="flex items-baseline space-x-2">
+                    <span id="metric-std-dev" class="text-3xl font-extrabold text-white">&plusmn;8.42</span>
+                    <span class="text-xs text-slate-400">Marks (&sigma;)</span>
+                </div>
+                <div class="mt-3 flex items-center text-xs text-cyan-400 font-medium">
+                    <i class="fa-solid fa-chart-area mr-1.5 text-[10px]"></i>
+                    <span id="metric-variance-note">Normal Distribution</span>
+                </div>
+            </div>
+
+            <!-- Metric Card 4: Attendance-to-Marks Correlation -->
+            <div class="glass-card glass-card-hover rounded-2xl p-6 relative overflow-hidden">
+                <div class="flex items-center justify-between mb-3">
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Correlation (r)</span>
+                    <div
+                        class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center">
+                        <i class="fa-solid fa-link text-lg"></i>
+                    </div>
+                </div>
+                <div class="flex items-baseline space-x-2">
+                    <span id="metric-correlation" class="text-3xl font-extrabold text-white">0.78</span>
+                    <span
+                        class="text-xs text-emerald-400 font-semibold px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-800/40">Strong
+                        +</span>
+                </div>
+                <div class="mt-3 flex items-center text-xs text-slate-400 font-medium">
+                    <span>Pearson coefficient: Attendance &rarr; Marks</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Chart Grid (2x2 Layout) -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+            <!-- Chart 1: Score Distribution (Histogram / Bar Chart) -->
+            <div class="glass-card rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-100 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-column text-brand-400 text-sm"></i>
+                            Statistics Score Distribution
+                        </h3>
+                        <p class="text-xs text-slate-400">Frequency distribution of Statistics marks across the filtered
+                            batch</p>
+                    </div>
+                    <span
+                        class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-slate-800 text-slate-300 border border-slate-700">Histogram</span>
+                </div>
+                <div class="relative h-72 w-full">
+                    <canvas id="chart-score-dist"></canvas>
+                </div>
+                <div
+                    class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                    <span><i class="fa-solid fa-info-circle mr-1 text-brand-400"></i> Mode Range: <strong id="hist-mode"
+                            class="text-slate-200">70 - 80 Marks</strong></span>
+                    <span>Skewness: <strong id="hist-skew" class="text-slate-200">-0.18 (Slight Left)</strong></span>
+                </div>
+            </div>
+
+            <!-- Chart 2: Attendance vs. Final Score (Scatter Plot with Regression Line) -->
+            <div class="glass-card rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-100 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-scatter text-emerald-400 text-sm"></i>
+                            Attendance vs. Final Marks
+                        </h3>
+                        <p class="text-xs text-slate-400">Scatter plot &amp; empirical linear regression trendline (y =
+                            mx + c)</p>
+                    </div>
+                    <span id="regression-equation"
+                        class="px-2.5 py-1 text-[11px] font-mono font-bold rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800/50">
+                        y = 0.85x + 12.4
+                    </span>
+                </div>
+                <div class="relative h-72 w-full">
+                    <canvas id="chart-attendance-scatter"></canvas>
+                </div>
+                <div
+                    class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                    <span class="flex items-center gap-3">
+                        <span class="flex items-center gap-1"><span
+                                class="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block"></span> High
+                            (&ge;75)</span>
+                        <span class="flex items-center gap-1"><span
+                                class="w-2.5 h-2.5 rounded-full bg-indigo-400 inline-block"></span> Pass (50-74)</span>
+                        <span class="flex items-center gap-1"><span
+                                class="w-2.5 h-2.5 rounded-full bg-rose-400 inline-block"></span> At Risk
+                            (&lt;50)</span>
+                    </span>
+                    <span>R<sup>2</sup> Fit: <strong id="r2-score" class="text-emerald-400">0.61</strong></span>
+                </div>
+            </div>
+
+            <!-- Chart 3: 5-Year Academic Trend & Moving Average Forecast -->
+            <div class="glass-card rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-100 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-cyan-400 text-sm"></i>
+                            5-Year Pass Rate &amp; Moving Average Forecast
+                        </h3>
+                        <p class="text-xs text-slate-400">Historical performance (2021-2025) + 2-Period MA Forecast
+                            (2026-2027)</p>
+                    </div>
+                    <span
+                        class="px-2.5 py-1 text-[11px] font-medium rounded-full bg-cyan-950 text-cyan-300 border border-cyan-800/50 flex items-center gap-1.5">
+                        <i class="fa-solid fa-wand-magic-sparkles text-[10px]"></i> Predictive MA
+                    </span>
+                </div>
+                <div class="relative h-72 w-full">
+                    <canvas id="chart-academic-trend"></canvas>
+                </div>
+                <div
+                    class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                    <span><i class="fa-solid fa-arrow-trend-up text-emerald-400 mr-1"></i> Projected 2026 Pass Rate:
+                        <strong class="text-cyan-300 font-bold" id="forecast-2026">91.5%</strong></span>
+                    <span>Model: <strong class="text-slate-200">2-Period Simple Moving Average</strong></span>
+                </div>
+            </div>
+
+            <!-- Chart 4: Placement Package & Career Track Distribution -->
+            <div class="glass-card rounded-2xl p-6 shadow-xl flex flex-col justify-between">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-100 flex items-center gap-2">
+                            <i class="fa-solid fa-pie-chart text-violet-400 text-sm"></i>
+                            Placement &amp; Career Track Distribution
+                        </h3>
+                        <p class="text-xs text-slate-400">Proportion of student outcomes (Tier-1, Tier-2, Research &amp;
+                            Higher-Ed)</p>
+                    </div>
+                    <span id="placement-rate-badge"
+                        class="px-2.5 py-1 text-[11px] font-bold rounded-full bg-violet-950 text-violet-300 border border-violet-800/50">
+                        88.4% Overall Placed
+                    </span>
+                </div>
+                <div class="relative h-72 w-full flex items-center justify-center">
+                    <canvas id="chart-placement-dist"></canvas>
+                </div>
+                <div
+                    class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-around text-xs text-slate-400">
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-indigo-500"></span>
+                        Tier-1 Corporate</span>
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-violet-500"></span>
+                        Tier-2 Tech</span>
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-cyan-400"></span>
+                        Research &amp; MS</span>
+                    <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-rose-500"></span>
+                        Off-Campus / Other</span>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Data Summary Table Section -->
+        <section class="glass-card rounded-2xl p-6 shadow-xl">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-100 flex items-center gap-2">
+                        <i class="fa-solid fa-table text-brand-400 text-sm"></i>
+                        Top Filtered Student Performance Records
+                    </h3>
+                    <p class="text-xs text-slate-400">Anonymized sample records showcasing individual metrics &amp;
+                        predicted outcomes</p>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div class="relative">
+                        <input type="text" id="table-search" placeholder="Search by ID or Dept..."
+                            class="bg-slate-900 border border-slate-700/80 rounded-xl px-3 py-1.5 pl-8 text-xs text-slate-200 focus:outline-none focus:border-brand-500 w-48 sm:w-64">
+                        <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-2.5 text-slate-500 text-xs"></i>
+                    </div>
+                    <span class="text-xs font-medium text-slate-400">Showing Top 5 Records</span>
+                </div>
+            </div>
+
+            <!-- Table Container -->
+            <div class="overflow-x-auto rounded-xl border border-slate-800/90">
+                <table class="w-full text-left text-xs">
+                    <thead
+                        class="bg-slate-900/90 text-slate-400 uppercase tracking-wider font-semibold border-b border-slate-800">
+                        <tr>
+                            <th class="py-3 px-4">Student ID</th>
+                            <th class="py-3 px-4">Department</th>
+                            <th class="py-3 px-4">Attendance %</th>
+                            <th class="py-3 px-4">Internal Score</th>
+                            <th class="py-3 px-4">Statistics Marks</th>
+                            <th class="py-3 px-4">Calculated GPA</th>
+                            <th class="py-3 px-4 text-center">Predicted Outcome</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-table-body" class="divide-y divide-slate-800/60 text-slate-300 font-medium">
+                        <!-- Rows injected via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-graduation-cap text-brand-400"></i>
+            <span>AcademiaPulse Analytics Engine &copy; 2026 Academic Placement &amp; Statistical Insights Cell</span>
+        </div>
+        <div class="flex gap-4">
+            <span class="hover:text-slate-400 transition cursor-pointer">Statistical Methodology</span>
+            <span>&bull;</span>
+            <span class="hover:text-slate-400 transition cursor-pointer">Documentation</span>
+            <span>&bull;</span>
+            <span class="hover:text-slate-400 transition cursor-pointer">Privacy &amp; Data Ethics</span>
+        </div>
+    </footer>
+
+    <!-- JavaScript Analytics & Dashboard Engine -->
+    <script>
+        // ==========================================
+        // 1. DATA GENERATION & SEEDING (250 Students)
+        // ==========================================
+        const DEPARTMENTS = ["Statistics", "Computer Science", "Data Science", "Mathematics"];
+        let rawDataset = [];
+
+        function generateMockDataset(count = 250) {
+            const data = [];
+            for (let i = 1; i <= count; i++) {
+                const id = `STU-2025-${String(i).padStart(3, '0')}`;
+                const dept = DEPARTMENTS[Math.floor(Math.random() * DEPARTMENTS.length)];
+
+                // Attendance percentage between 52% and 98%
+                const attendance = Math.round(52 + Math.random() * 46);
+
+                // Internal marks between 45 and 98
+                const internalMarks = Math.round(45 + Math.random() * 52);
+
+                // Statistics score correlated with attendance + internal marks + normal random variance
+                const baseScore = (attendance * 0.55) + (internalMarks * 0.35);
+                const noise = (Math.random() - 0.48) * 16;
+                const statsMarks = Math.min(100, Math.max(35, Math.round(baseScore + noise)));
+
+                // Calculate GPA out of 10
+                const gpa = Number(((statsMarks * 0.6 + internalMarks * 0.4) / 10).toFixed(2));
+
+                // Placement Track assignment based on performance
+                let placementTrack = "Tier-2 Tech";
+                if (gpa >= 8.8 && attendance >= 75) {
+                    placementTrack = Math.random() > 0.3 ? "Tier-1 Corporate" : "Research & Higher Ed";
+                } else if (gpa < 6.5 || attendance < 65) {
+                    placementTrack = Math.random() > 0.4 ? "Off-Campus / Other" : "Tier-2 Tech";
+                } else {
+                    placementTrack = Math.random() > 0.7 ? "Tier-1 Corporate" : "Tier-2 Tech";
+                }
+
+                data.push({
+                    id,
+                    dept,
+                    attendance,
+                    internalMarks,
+                    statsMarks,
+                    gpa,
+                    placementTrack
+                });
+            }
+            return data;
+        }
+
+        // Initialize Raw Dataset
+        rawDataset = generateMockDataset(250);
+
+        // ==========================================
+        // 2. STATISTICAL CALCULATION FUNCTIONS
+        // ==========================================
+
+        function calculateMean(arr) {
+            if (!arr || arr.length === 0) return 0;
+            const sum = arr.reduce((acc, val) => acc + val, 0);
+            return sum / arr.length;
+        }
+
+        function calculateStdDev(arr, mean) {
+            if (!arr || arr.length <= 1) return 0;
+            const variance = arr.reduce((acc, val) => acc + Math.pow(val - mean, 2), 0) / arr.length;
+            return Math.sqrt(variance);
+        }
+
+        function calculatePearsonCorrelation(xArr, yArr) {
+            const n = xArr.length;
+            if (n === 0) return 0;
+
+            const sumX = xArr.reduce((a, b) => a + b, 0);
+            const sumY = yArr.reduce((a, b) => a + b, 0);
+            const sumXY = xArr.reduce((sum, x, i) => sum + x * yArr[i], 0);
+            const sumX2 = xArr.reduce((sum, x) => sum + x * x, 0);
+            const sumY2 = yArr.reduce((sum, y) => sum + y * y, 0);
+
+            const numerator = (n * sumXY) - (sumX * sumY);
+            const denominator = Math.sqrt(((n * sumX2) - Math.pow(sumX, 2)) * ((n * sumY2) - Math.pow(sumY, 2)));
+
+            if (denominator === 0) return 0;
+            return numerator / denominator;
+        }
+
+        function calculateLinearRegression(xArr, yArr) {
+            const n = xArr.length;
+            if (n === 0) return { slope: 0, intercept: 0, r2: 0 };
+
+            const sumX = xArr.reduce((a, b) => a + b, 0);
+            const sumY = yArr.reduce((a, b) => a + b, 0);
+            const sumXY = xArr.reduce((sum, x, i) => sum + x * yArr[i], 0);
+            const sumX2 = xArr.reduce((sum, x) => sum + x * x, 0);
+
+            const slope = ((n * sumXY) - (sumX * sumY)) / ((n * sumX2) - Math.pow(sumX, 2));
+            const intercept = (sumY - (slope * sumX)) / n;
+
+            const r = calculatePearsonCorrelation(xArr, yArr);
+            const r2 = Math.pow(r, 2);
+
+            return { slope, intercept, r2 };
+        }
+
+        // ==========================================
+        // 3. CHART.JS GLOBALS & INITIALIZATION
+        // ==========================================
+        let chartScoreDistInstance = null;
+        let chartScatterInstance = null;
+        let chartTrendInstance = null;
+        let chartPlacementInstance = null;
+
+        // Custom Chart.js dark mode theme defaults
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.font.family = "'Outfit', sans-serif";
+
+        function initCharts() {
+            // Chart 1: Score Distribution Histogram
+            const ctxDist = document.getElementById('chart-score-dist').getContext('2d');
+            chartScoreDistInstance = new Chart(ctxDist, {
+                type: 'bar',
+                data: {
+                    labels: ['40-50 Marks', '51-60 Marks', '61-70 Marks', '71-80 Marks', '81-90 Marks', '91-100 Marks'],
+                    datasets: [{
+                        label: 'Student Count',
+                        data: [0, 0, 0, 0, 0, 0],
+                        backgroundColor: [
+                            'rgba(244, 63, 94, 0.7)',
+                            'rgba(245, 158, 11, 0.7)',
+                            'rgba(99, 102, 241, 0.7)',
+                            'rgba(129, 140, 248, 0.7)',
+                            'rgba(139, 92, 246, 0.7)',
+                            'rgba(16, 185, 129, 0.7)'
+                        ],
+                        borderColor: [
+                            '#f43f5e', '#f59e0b', '#6366f1', '#818cf8', '#8b5cf6', '#10b981'
+                        ],
+                        borderWidth: 1.5,
+                        borderRadius: 8,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1e293b',
+                            titleColor: '#f8fafc',
+                            bodyColor: '#cbd5e1',
+                            borderColor: '#475569',
+                            borderWidth: 1,
+                            padding: 10,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { precision: 0 }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // Chart 2: Attendance vs Final Score Scatter
+            const ctxScatter = document.getElementById('chart-attendance-scatter').getContext('2d');
+            chartScatterInstance = new Chart(ctxScatter, {
+                type: 'scatter',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Student Record',
+                            data: [],
+                            backgroundColor: 'rgba(99, 102, 241, 0.65)',
+                            borderColor: '#818cf8',
+                            borderWidth: 1,
+                            pointRadius: 4,
+                            pointHoverRadius: 7
+                        },
+                        {
+                            label: 'Linear Regression Trend',
+                            data: [],
+                            type: 'line',
+                            borderColor: '#10b981',
+                            borderWidth: 2.5,
+                            fill: false,
+                            pointRadius: 0,
+                            borderDash: [4, 4]
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: {
+                                usePointStyle: true,
+                                boxWidth: 8
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: '#1e293b',
+                            borderColor: '#475569',
+                            borderWidth: 1,
+                            callbacks: {
+                                label: function (context) {
+                                    if (context.dataset.type === 'line') return 'Trendline Model';
+                                    return `Att: ${context.parsed.x}%, Marks: ${context.parsed.y}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            title: { display: true, text: 'Attendance Percentage (%)', color: '#94a3b8' },
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            min: 45,
+                            max: 100
+                        },
+                        y: {
+                            title: { display: true, text: 'Final Statistics Marks (0-100)', color: '#94a3b8' },
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            min: 30,
+                            max: 100
+                        }
+                    }
+                }
+            });
+
+            // Chart 3: 5-Year Academic Trend & Moving Average Forecast
+            const ctxTrend = document.getElementById('chart-academic-trend').getContext('2d');
+            chartTrendInstance = new Chart(ctxTrend, {
+                type: 'line',
+                data: {
+                    labels: ['2021', '2022', '2023', '2024', '2025 (Current)', '2026 (Forecast)', '2027 (Forecast)'],
+                    datasets: [
+                        {
+                            label: 'Historical Pass %',
+                            data: [82.5, 84.1, 86.0, 87.8, 89.2, null, null],
+                            borderColor: '#8b5cf6',
+                            backgroundColor: 'rgba(139, 92, 246, 0.15)',
+                            fill: true,
+                            tension: 0.3,
+                            borderWidth: 3,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#8b5cf6'
+                        },
+                        {
+                            label: '2-Period Moving Avg Forecast',
+                            data: [null, null, null, null, 89.2, 88.5, 88.85],
+                            borderColor: '#06b6d4',
+                            borderWidth: 2.5,
+                            borderDash: [6, 6],
+                            fill: false,
+                            tension: 0.3,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#06b6d4'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            backgroundColor: '#1e293b',
+                            borderColor: '#475569',
+                            borderWidth: 1
+                        }
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            min: 75,
+                            max: 95,
+                            ticks: { callback: value => value + '%' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+
+            // Chart 4: Placement Track Distribution
+            const ctxPlacement = document.getElementById('chart-placement-dist').getContext('2d');
+            chartPlacementInstance = new Chart(ctxPlacement, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Tier-1 Corporate', 'Tier-2 Tech', 'Research & Higher Ed', 'Off-Campus / Other'],
+                    datasets: [{
+                        data: [0, 0, 0, 0],
+                        backgroundColor: [
+                            'rgba(99, 102, 241, 0.85)',
+                            'rgba(139, 92, 246, 0.85)',
+                            'rgba(56, 189, 248, 0.85)',
+                            'rgba(244, 63, 94, 0.85)'
+                        ],
+                        borderColor: '#0b0f19',
+                        borderWidth: 3,
+                        hoverOffset: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#1e293b',
+                            borderColor: '#475569',
+                            borderWidth: 1,
+                            callbacks: {
+                                label: function (context) {
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const val = context.raw;
+                                    const pct = total > 0 ? ((val / total) * 100).toFixed(1) : 0;
+                                    return ` ${context.label}: ${val} students (${pct}%)`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // ==========================================
+        // 4. DASHBOARD RE-RENDER & FILTER ENGINE
+        // ==========================================
+
+        function updateDashboard() {
+            const minAtt = Number(document.getElementById('filter-attendance').value);
+            const dept = document.getElementById('filter-dept').value;
+            const searchKeyword = document.getElementById('table-search').value.toLowerCase().trim();
+
+            // Filter raw dataset
+            const filtered = rawDataset.filter(item => {
+                const matchAtt = item.attendance >= minAtt;
+                const matchDept = (dept === 'ALL') || (item.dept === dept);
+                return matchAtt && matchDept;
+            });
+
+            // 4.1 Update Metric Overview Cards
+            const totalCount = filtered.length;
+            const pctOfTotal = ((totalCount / rawDataset.length) * 100).toFixed(1);
+
+            document.getElementById('metric-total-students').innerText = totalCount;
+            document.getElementById('metric-cohort-pct').innerText = `${pctOfTotal}% of total batch`;
+
+            const gpaArr = filtered.map(d => d.gpa);
+            const meanGpa = calculateMean(gpaArr);
+            document.getElementById('metric-mean-gpa').innerText = meanGpa.toFixed(2);
+
+            let gpaGrade = "Satisfactory";
+            if (meanGpa >= 8.5) gpaGrade = "Outstanding";
+            else if (meanGpa >= 8.0) gpaGrade = "Very Good";
+            else if (meanGpa >= 7.0) gpaGrade = "Good";
+            document.getElementById('metric-gpa-grade').innerText = gpaGrade;
+
+            const statsMarksArr = filtered.map(d => d.statsMarks);
+            const meanStatsMarks = calculateMean(statsMarksArr);
+            const stdDev = calculateStdDev(statsMarksArr, meanStatsMarks);
+            document.getElementById('metric-std-dev').innerText = `\u00B1${stdDev.toFixed(2)}`;
+
+            const attArr = filtered.map(d => d.attendance);
+            const corr = calculatePearsonCorrelation(attArr, statsMarksArr);
+            document.getElementById('metric-correlation').innerText = corr.toFixed(2);
+
+            // 4.2 Update Histogram (Chart 1)
+            const bins = [0, 0, 0, 0, 0, 0]; // 40-50, 51-60, 61-70, 71-80, 81-90, 91-100
+            statsMarksArr.forEach(m => {
+                if (m <= 50) bins[0]++;
+                else if (m <= 60) bins[1]++;
+                else if (m <= 70) bins[2]++;
+                else if (m <= 80) bins[3]++;
+                else if (m <= 90) bins[4]++;
+                else bins[5]++;
+            });
+            chartScoreDistInstance.data.datasets[0].data = bins;
+            chartScoreDistInstance.update('smooth');
+
+            // Find mode range for histogram summary
+            const maxBinIdx = bins.indexOf(Math.max(...bins));
+            const binRanges = ['40-50 Marks', '51-60 Marks', '61-70 Marks', '71-80 Marks', '81-90 Marks', '91-100 Marks'];
+            document.getElementById('hist-mode').innerText = binRanges[maxBinIdx] || 'N/A';
+
+            // 4.3 Update Scatter & Linear Regression (Chart 2)
+            const scatterPoints = filtered.map(d => ({
+                x: d.attendance,
+                y: d.statsMarks,
+                styleColor: d.statsMarks >= 75 ? '#10b981' : (d.statsMarks >= 50 ? '#818cf8' : '#f43f5e')
+            }));
+
+            const { slope, intercept, r2 } = calculateLinearRegression(attArr, statsMarksArr);
+
+            // Build trendline endpoints
+            const minX = Math.min(...(attArr.length ? attArr : [50]));
+            const maxX = Math.max(...(attArr.length ? attArr : [100]));
+            const trendlinePoints = [
+                { x: minX, y: Number((slope * minX + intercept).toFixed(1)) },
+                { x: maxX, y: Number((slope * maxX + intercept).toFixed(1)) }
+            ];
+
+            chartScatterInstance.data.datasets[0].data = scatterPoints;
+            chartScatterInstance.data.datasets[0].pointBackgroundColor = scatterPoints.map(p => p.styleColor);
+            chartScatterInstance.data.datasets[1].data = trendlinePoints;
+            chartScatterInstance.update('smooth');
+
+            document.getElementById('regression-equation').innerText = `y = ${slope.toFixed(2)}x ${intercept >= 0 ? '+' : '-'} ${Math.abs(intercept).toFixed(1)}`;
+            document.getElementById('r2-score').innerText = r2.toFixed(2);
+
+            // 4.4 Update Trendline & Moving Average (Chart 3)
+            const passPctCurrentBatch = (filtered.filter(d => d.statsMarks >= 50).length / (filtered.length || 1)) * 100;
+            const hist2024 = 87.8;
+            const hist2025 = Number(passPctCurrentBatch.toFixed(1));
+
+            const forecast2026 = (hist2024 + hist2025) / 2;
+            const forecast2027 = (hist2025 + forecast2026) / 2;
+
+            chartTrendInstance.data.datasets[0].data = [82.5, 84.1, 86.0, hist2024, hist2025, null, null];
+            chartTrendInstance.data.datasets[1].data = [null, null, null, null, hist2025, Number(forecast2026.toFixed(1)), Number(forecast2027.toFixed(1))];
+            chartTrendInstance.update('smooth');
+
+            document.getElementById('forecast-2026').innerText = `${forecast2026.toFixed(1)}%`;
+
+            // 4.5 Update Placement Distribution (Chart 4)
+            const placementCounts = {
+                'Tier-1 Corporate': 0,
+                'Tier-2 Tech': 0,
+                'Research & Higher Ed': 0,
+                'Off-Campus / Other': 0
+            };
+
+            filtered.forEach(d => {
+                if (placementCounts[d.placementTrack] !== undefined) {
+                    placementCounts[d.placementTrack]++;
+                }
+            });
+
+            const totalPlaced = placementCounts['Tier-1 Corporate'] + placementCounts['Tier-2 Tech'] + placementCounts['Research & Higher Ed'];
+            const overallPlacementRate = totalCount > 0 ? ((totalPlaced / totalCount) * 100).toFixed(1) : 0;
+
+            chartPlacementInstance.data.datasets[0].data = [
+                placementCounts['Tier-1 Corporate'],
+                placementCounts['Tier-2 Tech'],
+                placementCounts['Research & Higher Ed'],
+                placementCounts['Off-Campus / Other']
+            ];
+            chartPlacementInstance.update('smooth');
+
+            document.getElementById('placement-rate-badge').innerText = `${overallPlacementRate}% Overall Placed`;
+
+            // 4.6 Update Data Summary Table (Top 5 Records)
+            renderSummaryTable(filtered, searchKeyword);
+        }
+
+        function renderSummaryTable(filteredDataset, keyword = '') {
+            const tableBody = document.getElementById('student-table-body');
+            tableBody.innerHTML = '';
+
+            let displayList = filteredDataset;
+            if (keyword) {
+                displayList = displayList.filter(s =>
+                    s.id.toLowerCase().includes(keyword) ||
+                    s.dept.toLowerCase().includes(keyword)
+                );
+            }
+
+            // Take top 5 sample records sorted by Statistics marks descending
+            const top5 = [...displayList].sort((a, b) => b.statsMarks - a.statsMarks).slice(0, 5);
+
+            if (top5.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="py-8 text-center text-slate-500">
+                            <i class="fa-solid fa-folder-open text-2xl mb-2 block"></i>
+                            No matching student records found for the active filter selection.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            top5.forEach(student => {
+                let outcomeBadge = '<span class="px-2.5 py-1 text-[10px] font-bold rounded-md bg-emerald-950 text-emerald-300 border border-emerald-800/50">High Distinction</span>';
+                if (student.gpa < 6.5) {
+                    outcomeBadge = '<span class="px-2.5 py-1 text-[10px] font-bold rounded-md bg-rose-950 text-rose-300 border border-rose-800/50">Needs Support</span>';
+                } else if (student.gpa < 8.0) {
+                    outcomeBadge = '<span class="px-2.5 py-1 text-[10px] font-bold rounded-md bg-brand-950 text-brand-300 border border-brand-800/50">First Class</span>';
+                }
+
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-800/40 transition duration-150";
+                tr.innerHTML = `
+                    <td class="py-3 px-4 font-mono text-brand-400 font-semibold">${student.id}</td>
+                    <td class="py-3 px-4">${student.dept}</td>
+                    <td class="py-3 px-4">
+                        <div class="flex items-center gap-2">
+                            <div class="w-12 bg-slate-800 h-1.5 rounded-full overflow-hidden">
+                                <div class="bg-brand-500 h-full" style="width: ${student.attendance}%"></div>
+                            </div>
+                            <span>${student.attendance}%</span>
+                        </div>
+                    </td>
+                    <td class="py-3 px-4">${student.internalMarks} / 100</td>
+                    <td class="py-3 px-4 font-bold text-slate-100">${student.statsMarks}</td>
+                    <td class="py-3 px-4 text-violet-300 font-bold">${student.gpa.toFixed(2)}</td>
+                    <td class="py-3 px-4 text-center">${outcomeBadge}</td>
+                `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // ==========================================
+        // 5. EVENT LISTENERS & EXPORT HANDLERS
+        // ==========================================
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initCharts();
+            updateDashboard();
+
+            // Slider Input Event Listener
+            const slider = document.getElementById('filter-attendance');
+            const sliderValLabel = document.getElementById('val-attendance');
+
+            slider.addEventListener('input', (e) => {
+                sliderValLabel.innerText = `${e.target.value}%`;
+                updateDashboard();
+            });
+
+            // Department Dropdown Change Event Listener
+            document.getElementById('filter-dept').addEventListener('change', updateDashboard);
+
+            // Table Search Box Input
+            document.getElementById('table-search').addEventListener('input', updateDashboard);
+
+            // Quick Preset Buttons
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.preset-btn').forEach(b => {
+                        b.classList.remove('bg-brand-600', 'text-white');
+                        b.classList.add('bg-slate-800', 'text-slate-300');
+                    });
+                    e.target.classList.remove('bg-brand-600', 'text-white');
+                    e.target.classList.add('bg-brand-600', 'text-white');
+
+                    const preset = e.target.getAttribute('data-preset');
+                    if (preset === 'all') {
+                        slider.value = 50;
+                        document.getElementById('filter-dept').value = 'ALL';
+                    } else if (preset === 'high') {
+                        slider.value = 80;
+                    } else if (preset === 'risk') {
+                        slider.value = 50;
+                    }
+                    sliderValLabel.innerText = `${slider.value}%`;
+                    updateDashboard();
+                });
+            });
+
+            // Reset Button
+            document.getElementById('btn-reset-filters').addEventListener('click', () => {
+                slider.value = 60;
+                sliderValLabel.innerText = '60%';
+                document.getElementById('filter-dept').value = 'ALL';
+                document.getElementById('table-search').value = '';
+
+                document.querySelectorAll('.preset-btn').forEach(b => {
+                    b.classList.remove('bg-brand-600', 'text-white');
+                    b.classList.add('bg-slate-800', 'text-slate-300');
+                });
+                document.querySelector('.preset-btn[data-preset="all"]').classList.add('bg-brand-600', 'text-white');
+
+                updateDashboard();
+            });
+
+            // Export CSV Feature
+            document.getElementById('btn-export-data').addEventListener('click', () => {
+                const headers = ["Student ID", "Department", "Attendance %", "Internal Score", "Statistics Marks", "GPA", "Placement Track"];
+                const csvRows = [headers.join(",")];
+
+                const minAtt = Number(slider.value);
+                const dept = document.getElementById('filter-dept').value;
+                const filtered = rawDataset.filter(item => item.attendance >= minAtt && (dept === 'ALL' || item.dept === dept));
+
+                filtered.forEach(row => {
+                    csvRows.push([
+                        row.id,
+                        `"${row.dept}"`,
+                        row.attendance,
+                        row.internalMarks,
+                        row.statsMarks,
+                        row.gpa,
+                        `"${row.placementTrack}"`
+                    ].join(","));
+                });
+
+                const blob = new Blob([csvRows.join("\n")], { type: 'text/csv' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.setAttribute('href', url);
+                a.setAttribute('download', `AcademiaPulse_Report_${new Date().toISOString().slice(0, 10)}.csv`);
+                a.click();
+            });
+        });
+    </script>
+</body>
+
+</html>
