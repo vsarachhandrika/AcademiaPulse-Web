@@ -171,7 +171,7 @@
                 </h2>
 
                 <label class="block text-[11px] text-slate-400 mb-1">Raw Comma-Separated Scores:</label>
-                <input type="text" id="statInput" oninput="calculateInstantStats()"
+                <input type="text" id="statInput" oninput="calculateCustomStats(this.value)"
                     value="78, 85, 92, 64, 88, 73, 95, 81, 69, 90" placeholder="e.g. 75, 82, 90, 68..."
                     class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-slate-200 focus:outline-none focus:border-teal-400 mb-4 transition-all">
 
@@ -182,7 +182,7 @@
                     </div>
                     <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-center">
                         <span class="block text-[10px] text-slate-400 uppercase">Sample Mean (x̄)</span>
-                        <span id="statMean" class="text-base font-extrabold text-teal-300">81.50</span>
+                        <span id="kpiCount" class="font-extrabold text-slate-200 text-sm">0 students</span>
                     </div>
                     <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-center">
                         <span class="block text-[10px] text-slate-400 uppercase">Variance (s²)</span>
@@ -369,3 +369,81 @@
                         class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300">Cancel</button>
                     <button type="submit"
                         class="px-5 py-2 rounded-lg bg-cyan-500 text-slate-950 font-bold hover:bg-cyan-400">Save R
+                        </button></div>
+
+
+            </form>
+            </div>
+            <script>
+// --- GLOBAL DATASET STATE ---
+let rawDataset = [];
+
+// 1. Real-Time Statistical Calculator Logic
+function calculateCustomStats(inputVal) {
+    const numbers = inputVal.split(',').map(n => parseFloat(n.trim())).filter(n => !isNaN(n));
+    const count = numbers.length;
+    
+    const nEl = document.getElementById('statN');
+    const meanEl = document.getElementById('statMean');
+    const varEl = document.getElementById('statVar');
+    const sdEl = document.getElementById('statSD');
+
+    if (count === 0) {
+        if (nEl) nEl.textContent = '0';
+        if (meanEl) meanEl.textContent = '0.00';
+        if (varEl) varEl.textContent = '0.00';
+        if (sdEl) sdEl.textContent = '0.00';
+        return;
+    }
+
+    const mean = numbers.reduce((a, b) => a + b, 0) / count;
+    const variance = count > 1 ? numbers.reduce((sq, n) => sq + Math.pow(n - mean, 2), 0) / (count - 1) : 0;
+    const stdDev = Math.sqrt(variance);
+
+    if (nEl) nEl.textContent = count;
+    if (meanEl) meanEl.textContent = mean.toFixed(2);
+    if (varEl) varEl.textContent = variance.toFixed(2);
+    if (sdEl) sdEl.textContent = stdDev.toFixed(2);
+}
+
+// 2. Dynamic Dashboard Metrics
+function updateDashboardMetrics() {
+    const totalCount = rawDataset.length;
+    const countEl = document.getElementById('kpiCount');
+    if (countEl) {
+        countEl.textContent = ${totalCount} Students;
+    }
+}
+
+// 3. Modal Controls
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) modal.classList.remove('hidden');
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) modal.classList.add('hidden');
+}
+
+// 4. Theme Switcher
+function setTheme(themeName) {
+    const body = document.getElementById('appBody');
+    if (!body) return;
+    
+    body.className = 'min-h-screen transition-colors duration-500 font-sans pb-12 ';
+    if (themeName === 'dark') {
+        body.classList.add('bg-[#0b0f19]', 'text-slate-100');
+    } else if (themeName === 'gradient') {
+        body.classList.add('gradient-theme', 'text-slate-100');
+    } else if (themeName === 'light') {
+        body.classList.add('light');
+    }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    updateDashboardMetrics();
+});
+</script>
+</html>
