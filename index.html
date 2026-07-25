@@ -1837,10 +1837,36 @@
 
 
             rawDataset = [];
+            filteredDataset = [];
 
+            const inspectorSearch =
+                document.getElementById('inspectorSearch');
+            const deptFilter =
+                document.getElementById('deptFilter');
+            const attendanceSlider =
+                document.getElementById('attendanceSlider');
+            const importStatus =
+                document.getElementById('importStatus');
+
+            if (inspectorSearch) {
+                inspectorSearch.value = '';
+            }
+
+            if (deptFilter) {
+                deptFilter.value = 'ALL';
+            }
+
+            if (attendanceSlider) {
+                attendanceSlider.value = 0;
+            }
+
+            if (importStatus) {
+                importStatus.textContent = '';
+            }
+
+            document.getElementById('attendanceVal').textContent = '0%';
 
             applyFilters();
-
             inspectStudent();
         }
 
