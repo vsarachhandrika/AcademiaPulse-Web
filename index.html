@@ -412,14 +412,14 @@
 
                         <span id="attendanceVal" class="text-cyan-400 font-bold">
 
-                            50%
+                            0%
 
                         </span>
 
                     </div>
 
 
-                    <input type="range" id="attendanceSlider" min="50" max="90" value="50" oninput="applyFilters()"
+                    <input type="range" id="attendanceSlider" min="0" max="100" value="0" oninput="applyFilters()"
                         class="w-full accent-cyan-400 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer">
 
                 </div>
@@ -919,6 +919,8 @@
 
                 </p>
 
+                <p id="importStatus" class="text-[10px] text-cyan-300 pt-2 min-h-[20px]"></p>
+
 
                 <div class="pt-3 flex justify-end gap-2">
 
@@ -956,94 +958,6 @@
         let scatterChart = null;
         let trendChartInstance = null;
         let outcomeChartInstance = null;
-
-
-        // ==========================================
-        // SAMPLE DATA
-        // ==========================================
-
-        const sampleDataset = [
-            {
-                id: "STU-2026-001",
-                name: "Ananya Rao",
-                course: "B.Sc Data Science",
-                attendance: 92,
-                internal: 23,
-                final: 91
-            },
-            {
-                id: "STU-2026-002",
-                name: "Rahul Kumar",
-                course: "B.Tech CSE",
-                attendance: 88,
-                internal: 21,
-                final: 85
-            },
-            {
-                id: "STU-2026-003",
-                name: "Priya Sharma",
-                course: "B.Sc Biotech",
-                attendance: 79,
-                internal: 20,
-                final: 76
-            },
-            {
-                id: "STU-2026-004",
-                name: "Arjun Reddy",
-                course: "B.Sc MSCs",
-                attendance: 84,
-                internal: 22,
-                final: 82
-            },
-            {
-                id: "STU-2026-005",
-                name: "Sneha Patel",
-                course: "B.Com Business Analytics",
-                attendance: 95,
-                internal: 24,
-                final: 94
-            },
-            {
-                id: "STU-2026-006",
-                name: "Vikram Singh",
-                course: "BBA Finance",
-                attendance: 72,
-                internal: 18,
-                final: 68
-            },
-            {
-                id: "STU-2026-007",
-                name: "Kavya Nair",
-                course: "B.A. Economics",
-                attendance: 86,
-                internal: 21,
-                final: 80
-            },
-            {
-                id: "STU-2026-008",
-                name: "Rohit Das",
-                course: "BCA",
-                attendance: 67,
-                internal: 16,
-                final: 61
-            },
-            {
-                id: "STU-2026-009",
-                name: "Meera Joshi",
-                course: "B.Sc MPCs",
-                attendance: 90,
-                internal: 23,
-                final: 88
-            },
-            {
-                id: "STU-2026-010",
-                name: "Aditya Verma",
-                course: "B.Tech CSE",
-                attendance: 81,
-                internal: 19,
-                final: 74
-            }
-        ];
 
 
         // ==========================================
@@ -1808,7 +1722,8 @@
 
 
                 const importedStudents = [];
-
+                let duplicateCount = 0;
+                let invalidCount = 0;
 
                 for (
                     let i = 1;
@@ -1821,6 +1736,7 @@
 
 
                     if (columns.length < 6) {
+                        invalidCount++;
                         continue;
                     }
 
@@ -1868,15 +1784,17 @@
 
                         if (!duplicate) {
                             importedStudents.push(student);
+                        } else {
+                            duplicateCount++;
                         }
+                    } else {
+                        invalidCount++;
                     }
                 }
 
 
                 rawDataset =
-                    rawDataset.concat(
-                        importedStudents
-                    );
+                    importedStudents.slice();
 
 
                 closeModal('importModal');
@@ -1885,10 +1803,17 @@
 
                 applyFilters();
 
+                const statusMessage =
+                    `${importedStudents.length} records imported successfully.` +
+                    (duplicateCount > 0 ? ` ${duplicateCount} duplicate(s) skipped.` : '') +
+                    (invalidCount > 0 ? ` ${invalidCount} invalid row(s) skipped.` : '');
 
-                alert(
-                    `${importedStudents.length} student records imported successfully!`
-                );
+                const statusEl = document.getElementById('importStatus');
+                if (statusEl) {
+                    statusEl.textContent = statusMessage;
+                }
+
+                alert(statusMessage);
             };
 
 
@@ -1904,17 +1829,14 @@
 
             const confirmed =
                 confirm(
-                    'Reset the dataset to the original sample data?'
+                    'Clear the current dataset and reset filters?'
                 );
 
 
             if (!confirmed) return;
 
 
-            rawDataset =
-                JSON.parse(
-                    JSON.stringify(sampleDataset)
-                );
+            rawDataset = [];
 
 
             applyFilters();
@@ -2388,10 +2310,7 @@
             'DOMContentLoaded',
             function () {
 
-                rawDataset =
-                    JSON.parse(
-                        JSON.stringify(sampleDataset)
-                    );
+                rawDataset = [];
 
                 const storedTheme =
                     localStorage.getItem('academiaPulseTheme');
