@@ -30,8 +30,7 @@
     </script>
 
     <!-- FontAwesome Icons -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -58,12 +57,10 @@
         }
 
         .gradient-theme {
-            background: linear-gradient(
-                135deg,
-                #0f0c29 0%,
-                #302b63 50%,
-                #24243e 100%
-            ) !important;
+            background: linear-gradient(135deg,
+                    #0f0c29 0%,
+                    #302b63 50%,
+                    #24243e 100%) !important;
         }
 
         .light {
@@ -96,8 +93,7 @@
     </style>
 </head>
 
-<body id="appBody"
-    class="bg-[#0b0f19] text-slate-100 min-h-screen transition-colors duration-500 font-sans pb-12">
+<body id="appBody" class="bg-[#0b0f19] text-slate-100 min-h-screen transition-colors duration-500 font-sans pb-12">
 
     <!-- HEADER / NAVBAR -->
 
@@ -111,16 +107,13 @@
             <div
                 class="relative w-11 h-11 rounded-full bg-slate-900 border border-cyan-500/30 flex items-center justify-center p-1 shadow-[0_0_15px_rgba(0,242,254,0.3)]">
 
-                <div
-                    class="absolute inset-0 rounded-full border border-cyan-400/50 atomic-ring">
+                <div class="absolute inset-0 rounded-full border border-cyan-400/50 atomic-ring">
                 </div>
 
-                <div
-                    class="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_8px_#00f2fe] z-10">
+                <div class="w-3 h-3 bg-cyan-400 rounded-full shadow-[0_0_8px_#00f2fe] z-10">
                 </div>
 
-                <div
-                    class="absolute w-8 h-8 rounded-full border border-purple-500/60 rotate-45">
+                <div class="absolute w-8 h-8 rounded-full border border-purple-500/60 rotate-45">
                 </div>
 
             </div>
@@ -132,8 +125,7 @@
                     AcademiaPulse
                 </h1>
 
-                <p
-                    class="text-[10px] tracking-widest text-slate-400 uppercase font-semibold">
+                <p class="text-[10px] tracking-widest text-slate-400 uppercase font-semibold">
                     Institutional Analytics
                 </p>
 
@@ -146,12 +138,9 @@
 
         <div class="flex items-center flex-wrap gap-2 sm:gap-3">
 
-            <div
-                class="bg-slate-900/80 p-1 rounded-xl border border-slate-800 flex items-center gap-1 text-xs">
+            <div class="bg-slate-900/80 p-1 rounded-xl border border-slate-800 flex items-center gap-1 text-xs">
 
-                <button
-                    onclick="setTheme('dark')"
-                    id="themeDarkBtn"
+                <button onclick="setTheme('dark')" id="themeDarkBtn"
                     class="px-3 py-1.5 rounded-lg font-medium transition-all bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
 
                     <i class="fa-solid fa-moon mr-1"></i>
@@ -160,9 +149,7 @@
                 </button>
 
 
-                <button
-                    onclick="setTheme('gradient')"
-                    id="themeGradBtn"
+                <button onclick="setTheme('gradient')" id="themeGradBtn"
                     class="px-3 py-1.5 rounded-lg font-medium transition-all text-slate-400 hover:text-slate-200">
 
                     <i class="fa-solid fa-palette mr-1"></i>
@@ -171,9 +158,7 @@
                 </button>
 
 
-                <button
-                    onclick="setTheme('light')"
-                    id="themeLightBtn"
+                <button onclick="setTheme('light')" id="themeLightBtn"
                     class="px-3 py-1.5 rounded-lg font-medium transition-all text-slate-400 hover:text-slate-200">
 
                     <i class="fa-solid fa-sun mr-1"></i>
@@ -184,8 +169,7 @@
             </div>
 
 
-            <button
-                onclick="openModal('addModal')"
+            <button onclick="openModal('addModal')"
                 class="bg-gradient-to-r from-cyan-500 to-teal-500 hover:from-cyan-400 hover:to-teal-400 text-slate-950 font-bold px-3.5 py-2 rounded-xl text-xs transition-all shadow-lg shadow-cyan-500/20 flex items-center gap-1.5">
 
                 <i class="fa-solid fa-user-plus"></i>
@@ -194,8 +178,7 @@
             </button>
 
 
-            <button
-                onclick="openModal('importModal')"
+            <button onclick="openModal('importModal')"
                 class="bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 font-semibold px-3.5 py-2 rounded-xl text-xs transition-all flex items-center gap-1.5">
 
                 <i class="fa-solid fa-file-import text-cyan-400"></i>
@@ -204,8 +187,7 @@
             </button>
 
 
-            <button
-                onclick="resetDataset()"
+            <button onclick="resetDataset()"
                 class="bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 font-semibold px-3 py-2 rounded-xl text-xs transition-all"
                 title="Reset Dataset">
 
@@ -230,11 +212,9 @@
 
             <!-- Universal Student ID Search Inspector -->
 
-            <div
-                class="lg:col-span-5 glass-card rounded-2xl p-5 shadow-xl relative overflow-hidden">
+            <div class="lg:col-span-5 glass-card rounded-2xl p-5 shadow-xl relative overflow-hidden">
 
-                <h2
-                    class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
 
                     <i class="fa-solid fa-id-card text-cyan-400"></i>
 
@@ -245,26 +225,20 @@
 
                 <div class="relative mb-4">
 
-                    <input
-                        type="text"
-                        id="inspectorSearch"
-                        oninput="inspectStudent()"
+                    <input type="text" id="inspectorSearch" oninput="inspectStudent()"
                         placeholder="Search ID (e.g. 170226467100, i7, STU-2026-001)..."
                         class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-2.5 pl-10 text-xs text-slate-200 focus:outline-none focus:border-cyan-400 transition-all">
 
-                    <i
-                        class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs">
                     </i>
 
                 </div>
 
 
-                <div
-                    id="inspectorResult"
+                <div id="inspectorResult"
                     class="bg-slate-900/50 rounded-xl p-4 border border-slate-800/80 min-h-[140px] flex items-center justify-center">
 
-                    <p
-                        class="text-slate-500 text-xs italic text-center">
+                    <p class="text-slate-500 text-xs italic text-center">
 
                         Type any student ID above to instantly view
                         full profile metrics.
@@ -278,11 +252,9 @@
 
             <!-- Instant Real-Time Statistical Calculator -->
 
-            <div
-                class="lg:col-span-7 glass-card rounded-2xl p-5 shadow-xl">
+            <div class="lg:col-span-7 glass-card rounded-2xl p-5 shadow-xl">
 
-                <h2
-                    class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <h2 class="text-sm font-bold text-slate-300 uppercase tracking-wider mb-3 flex items-center gap-2">
 
                     <i class="fa-solid fa-calculator text-teal-400"></i>
 
@@ -291,40 +263,30 @@
                 </h2>
 
 
-                <label
-                    class="block text-[11px] text-slate-400 mb-1">
+                <label class="block text-[11px] text-slate-400 mb-1">
 
                     Raw Comma-Separated Scores:
 
                 </label>
 
 
-                <input
-                    type="text"
-                    id="statInput"
-                    oninput="calculateCustomStats(this.value)"
-                    value=""
+                <input type="text" id="statInput" oninput="calculateCustomStats(this.value)" value=""
                     placeholder="e.g. 75, 82, 90, 68..."
                     class="w-full bg-slate-900/80 border border-slate-700 rounded-xl px-3.5 py-2 text-xs text-slate-200 focus:outline-none focus:border-teal-400 mb-4 transition-all">
 
 
-                <div
-                    class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
 
 
-                    <div
-                        class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-center">
+                    <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-center">
 
-                        <span
-                            class="block text-[10px] text-slate-400 uppercase">
+                        <span class="block text-[10px] text-slate-400 uppercase">
 
                             Sample Size (N)
 
                         </span>
 
-                        <span
-                            id="statN"
-                            class="text-base font-extrabold text-cyan-400">
+                        <span id="statN" class="text-base font-extrabold text-cyan-400">
 
                             0
 
@@ -333,19 +295,15 @@
                     </div>
 
 
-                    <div
-                        class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-center">
+                    <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-center">
 
-                        <span
-                            class="block text-[10px] text-slate-400 uppercase">
+                        <span class="block text-[10px] text-slate-400 uppercase">
 
                             Sample Mean (x̄)
 
                         </span>
 
-                        <span
-                            id="statMean"
-                            class="font-extrabold text-slate-200 text-sm">
+                        <span id="statMean" class="font-extrabold text-slate-200 text-sm">
 
                             0.00
 
@@ -354,19 +312,15 @@
                     </div>
 
 
-                    <div
-                        class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-center">
+                    <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-center">
 
-                        <span
-                            class="block text-[10px] text-slate-400 uppercase">
+                        <span class="block text-[10px] text-slate-400 uppercase">
 
                             Variance (s²)
 
                         </span>
 
-                        <span
-                            id="statVar"
-                            class="text-base font-extrabold text-purple-400">
+                        <span id="statVar" class="text-base font-extrabold text-purple-400">
 
                             0.00
 
@@ -375,19 +329,15 @@
                     </div>
 
 
-                    <div
-                        class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-center">
+                    <div class="bg-slate-900/80 p-3 rounded-xl border border-slate-800 text-center">
 
-                        <span
-                            class="block text-[10px] text-slate-400 uppercase">
+                        <span class="block text-[10px] text-slate-400 uppercase">
 
                             Std Dev (s)
 
                         </span>
 
-                        <span
-                            id="statSD"
-                            class="text-base font-extrabold text-pink-400">
+                        <span id="statSD" class="text-base font-extrabold text-pink-400">
 
                             0.00
 
@@ -404,24 +354,19 @@
 
         <!-- FILTERS BAR & KPI SUMMARY CARDS -->
 
-        <div
-            class="glass-card rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4">
+        <div class="glass-card rounded-2xl p-4 flex flex-wrap items-center justify-between gap-4">
 
-            <div
-                class="flex flex-wrap items-center gap-4 text-xs">
+            <div class="flex flex-wrap items-center gap-4 text-xs">
 
                 <div>
 
-                    <label
-                        class="block text-[10px] text-slate-400 font-semibold mb-1">
+                    <label class="block text-[10px] text-slate-400 font-semibold mb-1">
 
                         Department Filter:
 
                     </label>
 
-                    <select
-                        id="deptFilter"
-                        onchange="applyFilters()"
+                    <select id="deptFilter" onchange="applyFilters()"
                         class="bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-3 py-1.5 focus:outline-none focus:border-cyan-400">
 
                         <option value="ALL">
@@ -459,16 +404,13 @@
 
                 <div class="min-w-[180px]">
 
-                    <div
-                        class="flex justify-between text-[10px] text-slate-400 font-semibold mb-1">
+                    <div class="flex justify-between text-[10px] text-slate-400 font-semibold mb-1">
 
                         <span>
                             Min Attendance Filter:
                         </span>
 
-                        <span
-                            id="attendanceVal"
-                            class="text-cyan-400 font-bold">
+                        <span id="attendanceVal" class="text-cyan-400 font-bold">
 
                             50%
 
@@ -477,13 +419,7 @@
                     </div>
 
 
-                    <input
-                        type="range"
-                        id="attendanceSlider"
-                        min="50"
-                        max="90"
-                        value="50"
-                        oninput="applyFilters()"
+                    <input type="range" id="attendanceSlider" min="50" max="90" value="50" oninput="applyFilters()"
                         class="w-full accent-cyan-400 h-1 bg-slate-700 rounded-lg appearance-none cursor-pointer">
 
                 </div>
@@ -493,21 +429,17 @@
 
             <!-- Dashboard Stats Summary Pills -->
 
-            <div
-                class="flex items-center gap-4 text-xs">
+            <div class="flex items-center gap-4 text-xs">
 
                 <div class="text-right">
 
-                    <span
-                        class="block text-[10px] text-slate-400">
+                    <span class="block text-[10px] text-slate-400">
 
                         Filtered Count
 
                     </span>
 
-                    <span
-                        id="kpiCount"
-                        class="font-extrabold text-slate-200 text-sm">
+                    <span id="kpiCount" class="font-extrabold text-slate-200 text-sm">
 
                         0 Students
 
@@ -521,16 +453,13 @@
 
                 <div class="text-right">
 
-                    <span
-                        class="block text-[10px] text-slate-400">
+                    <span class="block text-[10px] text-slate-400">
 
                         Avg Attendance
 
                     </span>
 
-                    <span
-                        id="kpiAttendance"
-                        class="font-extrabold text-teal-400 text-sm">
+                    <span id="kpiAttendance" class="font-extrabold text-teal-400 text-sm">
 
                         --%
 
@@ -544,16 +473,13 @@
 
                 <div class="text-right">
 
-                    <span
-                        class="block text-[10px] text-slate-400">
+                    <span class="block text-[10px] text-slate-400">
 
                         Avg Final Score
 
                     </span>
 
-                    <span
-                        id="kpiScore"
-                        class="font-extrabold text-cyan-400 text-sm">
+                    <span id="kpiScore" class="font-extrabold text-cyan-400 text-sm">
 
                         -- / 100
 
@@ -568,18 +494,14 @@
 
         <!-- 2x2 CHART GRID -->
 
-        <div
-            class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
 
-            <div
-                class="glass-card rounded-2xl p-5 shadow-lg">
+            <div class="glass-card rounded-2xl p-5 shadow-lg">
 
-                <h3
-                    class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">
+                <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">
 
-                    <i
-                        class="fa-solid fa-chart-column text-cyan-400 mr-1.5">
+                    <i class="fa-solid fa-chart-column text-cyan-400 mr-1.5">
                     </i>
 
                     Score Frequency Distribution
@@ -595,14 +517,11 @@
             </div>
 
 
-            <div
-                class="glass-card rounded-2xl p-5 shadow-lg">
+            <div class="glass-card rounded-2xl p-5 shadow-lg">
 
-                <h3
-                    class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">
+                <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">
 
-                    <i
-                        class="fa-solid fa-chart-line text-teal-400 mr-1.5">
+                    <i class="fa-solid fa-chart-line text-teal-400 mr-1.5">
                     </i>
 
                     Attendance vs Final Score
@@ -619,14 +538,11 @@
             </div>
 
 
-            <div
-                class="glass-card rounded-2xl p-5 shadow-lg">
+            <div class="glass-card rounded-2xl p-5 shadow-lg">
 
-                <h3
-                    class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">
+                <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">
 
-                    <i
-                        class="fa-solid fa-arrow-trend-up text-purple-400 mr-1.5">
+                    <i class="fa-solid fa-arrow-trend-up text-purple-400 mr-1.5">
                     </i>
 
                     Multi-Year Performance Trend Forecast
@@ -642,14 +558,11 @@
             </div>
 
 
-            <div
-                class="glass-card rounded-2xl p-5 shadow-lg">
+            <div class="glass-card rounded-2xl p-5 shadow-lg">
 
-                <h3
-                    class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">
+                <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">
 
-                    <i
-                        class="fa-solid fa-chart-pie text-pink-400 mr-1.5">
+                    <i class="fa-solid fa-chart-pie text-pink-400 mr-1.5">
                     </i>
 
                     Placement Outcome Breakdown
@@ -669,25 +582,20 @@
 
         <!-- STUDENT DATA SUMMARY TABLE -->
 
-        <div
-            class="glass-card rounded-2xl p-5 shadow-xl">
+        <div class="glass-card rounded-2xl p-5 shadow-xl">
 
-            <div
-                class="flex flex-wrap items-center justify-between gap-4 mb-4">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
 
-                <h3
-                    class="text-sm font-bold text-slate-200 uppercase tracking-wider">
+                <h3 class="text-sm font-bold text-slate-200 uppercase tracking-wider">
 
-                    <i
-                        class="fa-solid fa-table-list text-cyan-400 mr-2">
+                    <i class="fa-solid fa-table-list text-cyan-400 mr-2">
                     </i>
 
                     Student Records Master Table
 
                 </h3>
 
-                <span
-                    class="text-[11px] text-slate-400">
+                <span class="text-[11px] text-slate-400">
 
                     Showing filtered student dataset
 
@@ -698,13 +606,11 @@
 
             <div class="overflow-x-auto">
 
-                <table
-                    class="w-full text-left border-collapse text-xs">
+                <table class="w-full text-left border-collapse text-xs">
 
                     <thead>
 
-                        <tr
-                            class="border-b border-slate-800 text-slate-400 uppercase text-[10px] tracking-wider">
+                        <tr class="border-b border-slate-800 text-slate-400 uppercase text-[10px] tracking-wider">
 
                             <th class="py-3 px-3">
                                 Student ID
@@ -747,9 +653,7 @@
                     </thead>
 
 
-                    <tbody
-                        id="studentTableBody"
-                        class="divide-y divide-slate-800/60 text-slate-300">
+                    <tbody id="studentTableBody" class="divide-y divide-slate-800/60 text-slate-300">
 
                         <!-- Rows dynamically populated -->
 
@@ -764,708 +668,661 @@
     </main>
     <!-- MODAL 1: ADD STUDENT FORM -->
 
-<div id="addModal"
-    class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div id="addModal"
+        class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
 
-    <div
-        class="glass-card rounded-2xl p-6 w-full max-w-lg shadow-2xl border border-slate-700">
+        <div class="glass-card rounded-2xl p-6 w-full max-w-lg shadow-2xl border border-slate-700">
 
-        <div class="flex justify-between items-center mb-4">
+            <div class="flex justify-between items-center mb-4">
 
-            <h3
-                class="text-base font-bold text-slate-100 flex items-center gap-2">
+                <h3 class="text-base font-bold text-slate-100 flex items-center gap-2">
 
-                <i class="fa-solid fa-user-plus text-cyan-400"></i>
+                    <i class="fa-solid fa-user-plus text-cyan-400"></i>
 
-                Add Single Student Record
+                    Add Single Student Record
 
-            </h3>
+                </h3>
 
-            <button
-                onclick="closeModal('addModal')"
-                class="text-slate-400 hover:text-slate-200">
+                <button onclick="closeModal('addModal')" class="text-slate-400 hover:text-slate-200">
 
-                <i class="fa-solid fa-xmark text-lg"></i>
+                    <i class="fa-solid fa-xmark text-lg"></i>
 
-            </button>
+                </button>
+
+            </div>
+
+
+            <form onsubmit="handleAddStudent(event)" class="space-y-3 text-xs">
+
+
+                <!-- Student ID -->
+
+                <div>
+
+                    <label class="block text-slate-400 mb-1">
+
+                        Student ID (Any Format accepted):
+
+                    </label>
+
+                    <input type="text" id="addId" placeholder="e.g. 170226467100 or i7 or STU-2026-999" required
+                        class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-cyan-400">
+
+                </div>
+
+
+                <!-- Full Name -->
+
+                <div>
+
+                    <label class="block text-slate-400 mb-1">
+
+                        Full Name:
+
+                    </label>
+
+                    <input type="text" id="addName" placeholder="e.g. Ananya Rao" required
+                        class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-cyan-400">
+
+                </div>
+
+
+                <!-- UG Stream / Degree -->
+
+                <div>
+
+                    <label class="block text-slate-400 mb-1">
+
+                        UG Stream / Degree:
+
+                    </label>
+
+                    <select id="addCourse" required
+                        class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-cyan-400">
+
+                        <option value="B.Sc MSCs">
+                            B.Sc MSCs (Maths, Stats, CS)
+                        </option>
+
+                        <option value="B.Sc MPCs">
+                            B.Sc MPCs (Maths, Physics, CS)
+                        </option>
+
+                        <option value="B.Sc MECs">
+                            B.Sc MECs (Maths, Electronics, CS)
+                        </option>
+
+                        <option value="B.Sc Data Science">
+                            B.Sc Data Science
+                        </option>
+
+                        <option value="B.Sc Biotech">
+                            B.Sc Biotech
+                        </option>
+
+                        <option value="B.Tech CSE">
+                            B.Tech CSE
+                        </option>
+
+                        <option value="B.Com Business Analytics">
+                            B.Com Business Analytics
+                        </option>
+
+                        <option value="BBA Finance">
+                            BBA Finance
+                        </option>
+
+                        <option value="B.A. Economics">
+                            B.A. Economics
+                        </option>
+
+                        <option value="BCA">
+                            BCA (Computer Applications)
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Attendance, Internal and Final Score -->
+
+                <div class="grid grid-cols-3 gap-3">
+
+
+                    <div>
+
+                        <label class="block text-slate-400 mb-1">
+
+                            Attendance %:
+
+                        </label>
+
+                        <input type="number" id="addAttendance" min="0" max="100" placeholder="85" required
+                            class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-cyan-400">
+
+                    </div>
+
+
+                    <div>
+
+                        <label class="block text-slate-400 mb-1">
+
+                            Internal (/25):
+
+                        </label>
+
+                        <input type="number" id="addInternal" min="0" max="25" placeholder="22" required
+                            class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-cyan-400">
+
+                    </div>
+
+
+                    <div>
+
+                        <label class="block text-slate-400 mb-1">
+
+                            Final Score (/100):
+
+                        </label>
+
+                        <input type="number" id="addFinal" min="0" max="100" placeholder="88" required
+                            class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-cyan-400">
+
+                    </div>
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="pt-3 flex justify-end gap-2">
+
+                    <button type="button" onclick="closeModal('addModal')"
+                        class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button type="submit"
+                        class="px-5 py-2 rounded-lg bg-cyan-500 text-slate-950 font-bold hover:bg-cyan-400">
+
+                        Save Record
+
+                    </button>
+
+                </div>
+
+            </form>
 
         </div>
-
-
-        <form
-            onsubmit="handleAddStudent(event)"
-            class="space-y-3 text-xs">
-
-
-            <!-- Student ID -->
-
-            <div>
-
-                <label class="block text-slate-400 mb-1">
-
-                    Student ID (Any Format accepted):
-
-                </label>
-
-                <input
-                    type="text"
-                    id="addId"
-                    placeholder="e.g. 170226467100 or i7 or STU-2026-999"
-                    required
-                    class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-cyan-400">
-
-            </div>
-
-
-            <!-- Full Name -->
-
-            <div>
-
-                <label class="block text-slate-400 mb-1">
-
-                    Full Name:
-
-                </label>
-
-                <input
-                    type="text"
-                    id="addName"
-                    placeholder="e.g. Ananya Rao"
-                    required
-                    class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-cyan-400">
-
-            </div>
-
-
-            <!-- UG Stream / Degree -->
-
-            <div>
-
-                <label class="block text-slate-400 mb-1">
-
-                    UG Stream / Degree:
-
-                </label>
-
-                <select
-                    id="addCourse"
-                    required
-                    class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-cyan-400">
-
-                    <option value="B.Sc MSCs">
-                        B.Sc MSCs (Maths, Stats, CS)
-                    </option>
-
-                    <option value="B.Sc MPCs">
-                        B.Sc MPCs (Maths, Physics, CS)
-                    </option>
-
-                    <option value="B.Sc MECs">
-                        B.Sc MECs (Maths, Electronics, CS)
-                    </option>
-
-                    <option value="B.Sc Data Science">
-                        B.Sc Data Science
-                    </option>
-
-                    <option value="B.Sc Biotech">
-                        B.Sc Biotech
-                    </option>
-
-                    <option value="B.Tech CSE">
-                        B.Tech CSE
-                    </option>
-
-                    <option value="B.Com Business Analytics">
-                        B.Com Business Analytics
-                    </option>
-
-                    <option value="BBA Finance">
-                        BBA Finance
-                    </option>
-
-                    <option value="B.A. Economics">
-                        B.A. Economics
-                    </option>
-
-                    <option value="BCA">
-                        BCA (Computer Applications)
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- Attendance, Internal and Final Score -->
-
-            <div class="grid grid-cols-3 gap-3">
-
-
-                <div>
-
-                    <label class="block text-slate-400 mb-1">
-
-                        Attendance %:
-
-                    </label>
-
-                    <input
-                        type="number"
-                        id="addAttendance"
-                        min="0"
-                        max="100"
-                        placeholder="85"
-                        required
-                        class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-cyan-400">
-
-                </div>
-
-
-                <div>
-
-                    <label class="block text-slate-400 mb-1">
-
-                        Internal (/25):
-
-                    </label>
-
-                    <input
-                        type="number"
-                        id="addInternal"
-                        min="0"
-                        max="25"
-                        placeholder="22"
-                        required
-                        class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-cyan-400">
-
-                </div>
-
-
-                <div>
-
-                    <label class="block text-slate-400 mb-1">
-
-                        Final Score (/100):
-
-                    </label>
-
-                    <input
-                        type="number"
-                        id="addFinal"
-                        min="0"
-                        max="100"
-                        placeholder="88"
-                        required
-                        class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-200 focus:outline-none focus:border-cyan-400">
-
-                </div>
-
-            </div>
-
-
-            <!-- Buttons -->
-
-            <div class="pt-3 flex justify-end gap-2">
-
-                <button
-                    type="button"
-                    onclick="closeModal('addModal')"
-                    class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300">
-
-                    Cancel
-
-                </button>
-
-
-                <button
-                    type="submit"
-                    class="px-5 py-2 rounded-lg bg-cyan-500 text-slate-950 font-bold hover:bg-cyan-400">
-
-                    Save Record
-
-                </button>
-
-            </div>
-
-        </form>
 
     </div>
 
-</div>
 
+    <!-- MODAL 2: BATCH IMPORT FORM -->
 
-<!-- MODAL 2: BATCH IMPORT FORM -->
+    <div id="importModal"
+        class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
 
-<div id="importModal"
-    class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="glass-card rounded-2xl p-6 w-full max-w-lg shadow-2xl border border-slate-700">
 
-    <div
-        class="glass-card rounded-2xl p-6 w-full max-w-lg shadow-2xl border border-slate-700">
+            <div class="flex justify-between items-center mb-4">
 
-        <div class="flex justify-between items-center mb-4">
+                <h3 class="text-base font-bold text-slate-100 flex items-center gap-2">
 
-            <h3
-                class="text-base font-bold text-slate-100 flex items-center gap-2">
+                    <i class="fa-solid fa-file-import text-cyan-400"></i>
 
-                <i class="fa-solid fa-file-import text-cyan-400"></i>
+                    Batch Import Students
 
-                Batch Import Students
+                </h3>
 
-            </h3>
+                <button onclick="closeModal('importModal')" class="text-slate-400 hover:text-slate-200">
 
-            <button
-                onclick="closeModal('importModal')"
-                class="text-slate-400 hover:text-slate-200">
+                    <i class="fa-solid fa-xmark text-lg"></i>
 
-                <i class="fa-solid fa-xmark text-lg"></i>
-
-            </button>
-
-        </div>
-
-
-        <div class="space-y-4 text-xs">
-
-
-            <p class="text-slate-400">
-
-                Upload a CSV file containing student records.
-
-            </p>
-
-
-            <div>
-
-                <label class="block text-slate-400 mb-1">
-
-                    Select CSV File:
-
-                </label>
-
-                <input
-                    type="file"
-                    id="csvFile"
-                    accept=".csv"
-                    class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-300">
+                </button>
 
             </div>
 
 
-            <p class="text-[10px] text-slate-500">
-
-                CSV columns should be:
-                ID, Name, Course, Attendance, Internal, Final
-
-            </p>
+            <div class="space-y-4 text-xs">
 
 
-            <div class="pt-3 flex justify-end gap-2">
+                <p class="text-slate-400">
 
-                <button
-                    type="button"
-                    onclick="closeModal('importModal')"
-                    class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300">
+                    Upload a CSV file containing student records.
 
-                    Cancel
-
-                </button>
+                </p>
 
 
-                <button
-                    type="button"
-                    onclick="handleBatchImport()"
-                    class="px-5 py-2 rounded-lg bg-cyan-500 text-slate-950 font-bold hover:bg-cyan-400">
+                <div>
 
-                    Import Data
+                    <label class="block text-slate-400 mb-1">
 
-                </button>
+                        Select CSV File:
+
+                    </label>
+
+                    <input type="file" id="csvFile" accept=".csv"
+                        class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-slate-300">
+
+                </div>
+
+
+                <p class="text-[10px] text-slate-500">
+
+                    CSV columns should be:
+                    ID, Name, Course, Attendance, Internal, Final
+
+                </p>
+
+
+                <div class="pt-3 flex justify-end gap-2">
+
+                    <button type="button" onclick="closeModal('importModal')"
+                        class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300">
+
+                        Cancel
+
+                    </button>
+
+
+                    <button type="button" onclick="handleBatchImport()"
+                        class="px-5 py-2 rounded-lg bg-cyan-500 text-slate-950 font-bold hover:bg-cyan-400">
+
+                        Import Data
+
+                    </button>
+
+                </div>
 
             </div>
 
         </div>
 
     </div>
+    <script>
+        // ==========================================
+        // GLOBAL DATASET STATE
+        // ==========================================
 
-</div>
-<script>
-    // ==========================================
-    // GLOBAL DATASET STATE
-    // ==========================================
+        let rawDataset = [];
+        let filteredDataset = [];
 
-    let rawDataset = [];
-    let filteredDataset = [];
-
-    let scoreHistogramChart = null;
-    let scatterChart = null;
-    let trendChartInstance = null;
-    let outcomeChartInstance = null;
+        let scoreHistogramChart = null;
+        let scatterChart = null;
+        let trendChartInstance = null;
+        let outcomeChartInstance = null;
 
 
-    // ==========================================
-    // SAMPLE DATA
-    // ==========================================
+        // ==========================================
+        // SAMPLE DATA
+        // ==========================================
 
-    const sampleDataset = [
-        {
-            id: "STU-2026-001",
-            name: "Ananya Rao",
-            course: "B.Sc Data Science",
-            attendance: 92,
-            internal: 23,
-            final: 91
-        },
-        {
-            id: "STU-2026-002",
-            name: "Rahul Kumar",
-            course: "B.Tech CSE",
-            attendance: 88,
-            internal: 21,
-            final: 85
-        },
-        {
-            id: "STU-2026-003",
-            name: "Priya Sharma",
-            course: "B.Sc Biotech",
-            attendance: 79,
-            internal: 20,
-            final: 76
-        },
-        {
-            id: "STU-2026-004",
-            name: "Arjun Reddy",
-            course: "B.Sc MSCs",
-            attendance: 84,
-            internal: 22,
-            final: 82
-        },
-        {
-            id: "STU-2026-005",
-            name: "Sneha Patel",
-            course: "B.Com Business Analytics",
-            attendance: 95,
-            internal: 24,
-            final: 94
-        },
-        {
-            id: "STU-2026-006",
-            name: "Vikram Singh",
-            course: "BBA Finance",
-            attendance: 72,
-            internal: 18,
-            final: 68
-        },
-        {
-            id: "STU-2026-007",
-            name: "Kavya Nair",
-            course: "B.A. Economics",
-            attendance: 86,
-            internal: 21,
-            final: 80
-        },
-        {
-            id: "STU-2026-008",
-            name: "Rohit Das",
-            course: "BCA",
-            attendance: 67,
-            internal: 16,
-            final: 61
-        },
-        {
-            id: "STU-2026-009",
-            name: "Meera Joshi",
-            course: "B.Sc MPCs",
-            attendance: 90,
-            internal: 23,
-            final: 88
-        },
-        {
-            id: "STU-2026-010",
-            name: "Aditya Verma",
-            course: "B.Tech CSE",
-            attendance: 81,
-            internal: 19,
-            final: 74
-        }
-    ];
-
-
-    // ==========================================
-    // STATISTICAL CALCULATOR
-    // ==========================================
-
-    function calculateCustomStats(inputVal) {
-
-        const numbers = inputVal
-            .split(',')
-            .map(n => parseFloat(n.trim()))
-            .filter(n => !isNaN(n));
-
-        const count = numbers.length;
-
-        const nEl = document.getElementById('statN');
-        const meanEl = document.getElementById('statMean');
-        const varEl = document.getElementById('statVar');
-        const sdEl = document.getElementById('statSD');
-
-        if (count === 0) {
-
-            nEl.textContent = '0';
-            meanEl.textContent = '0.00';
-            varEl.textContent = '0.00';
-            sdEl.textContent = '0.00';
-
-            return;
-        }
-
-        const mean =
-            numbers.reduce((a, b) => a + b, 0) / count;
-
-        const variance =
-            count > 1
-                ? numbers.reduce(
-                    (sum, n) => sum + Math.pow(n - mean, 2),
-                    0
-                ) / (count - 1)
-                : 0;
-
-        const stdDev = Math.sqrt(variance);
-
-        nEl.textContent = count;
-        meanEl.textContent = mean.toFixed(2);
-        varEl.textContent = variance.toFixed(2);
-        sdEl.textContent = stdDev.toFixed(2);
-    }
-
-
-    // ==========================================
-    // MODAL CONTROLS
-    // ==========================================
-
-    function openModal(modalId) {
-
-        const modal = document.getElementById(modalId);
-
-        if (modal) {
-            modal.classList.remove('hidden');
-        }
-    }
-
-
-    function closeModal(modalId) {
-
-        const modal = document.getElementById(modalId);
-
-        if (modal) {
-            modal.classList.add('hidden');
-        }
-    }
-
-
-    // ==========================================
-    // THEME SWITCHER
-    // ==========================================
-
-    function setTheme(themeName) {
-
-        const body = document.getElementById('appBody');
-
-        if (!body) return;
-
-        body.className =
-            'min-h-screen transition-colors duration-500 font-sans pb-12';
-
-        if (themeName === 'dark') {
-
-            body.classList.add(
-                'bg-[#0b0f19]',
-                'text-slate-100'
-            );
-
-        } else if (themeName === 'gradient') {
-
-            body.classList.add(
-                'gradient-theme',
-                'text-slate-100'
-            );
-
-        } else if (themeName === 'light') {
-
-            body.classList.add('light');
-
-        }
-
-        updateThemeButtons(themeName);
-    }
-
-
-    function updateThemeButtons(themeName) {
-
-        const buttons = [
-            'themeDarkBtn',
-            'themeGradBtn',
-            'themeLightBtn'
+        const sampleDataset = [
+            {
+                id: "STU-2026-001",
+                name: "Ananya Rao",
+                course: "B.Sc Data Science",
+                attendance: 92,
+                internal: 23,
+                final: 91
+            },
+            {
+                id: "STU-2026-002",
+                name: "Rahul Kumar",
+                course: "B.Tech CSE",
+                attendance: 88,
+                internal: 21,
+                final: 85
+            },
+            {
+                id: "STU-2026-003",
+                name: "Priya Sharma",
+                course: "B.Sc Biotech",
+                attendance: 79,
+                internal: 20,
+                final: 76
+            },
+            {
+                id: "STU-2026-004",
+                name: "Arjun Reddy",
+                course: "B.Sc MSCs",
+                attendance: 84,
+                internal: 22,
+                final: 82
+            },
+            {
+                id: "STU-2026-005",
+                name: "Sneha Patel",
+                course: "B.Com Business Analytics",
+                attendance: 95,
+                internal: 24,
+                final: 94
+            },
+            {
+                id: "STU-2026-006",
+                name: "Vikram Singh",
+                course: "BBA Finance",
+                attendance: 72,
+                internal: 18,
+                final: 68
+            },
+            {
+                id: "STU-2026-007",
+                name: "Kavya Nair",
+                course: "B.A. Economics",
+                attendance: 86,
+                internal: 21,
+                final: 80
+            },
+            {
+                id: "STU-2026-008",
+                name: "Rohit Das",
+                course: "BCA",
+                attendance: 67,
+                internal: 16,
+                final: 61
+            },
+            {
+                id: "STU-2026-009",
+                name: "Meera Joshi",
+                course: "B.Sc MPCs",
+                attendance: 90,
+                internal: 23,
+                final: 88
+            },
+            {
+                id: "STU-2026-010",
+                name: "Aditya Verma",
+                course: "B.Tech CSE",
+                attendance: 81,
+                internal: 19,
+                final: 74
+            }
         ];
 
-        buttons.forEach(id => {
 
-            const button = document.getElementById(id);
+        // ==========================================
+        // STATISTICAL CALCULATOR
+        // ==========================================
 
-            if (!button) return;
+        function calculateCustomStats(inputVal) {
 
-            button.classList.remove(
-                'bg-cyan-500/20',
-                'text-cyan-300',
-                'border',
-                'border-cyan-500/30'
-            );
+            const numbers = inputVal
+                .split(',')
+                .map(n => parseFloat(n.trim()))
+                .filter(n => !isNaN(n));
 
-            button.classList.add(
-                'text-slate-400'
-            );
-        });
+            const count = numbers.length;
 
+            const nEl = document.getElementById('statN');
+            const meanEl = document.getElementById('statMean');
+            const varEl = document.getElementById('statVar');
+            const sdEl = document.getElementById('statSD');
 
-        let activeButton = null;
+            if (count === 0) {
 
-        if (themeName === 'dark') {
-            activeButton =
-                document.getElementById('themeDarkBtn');
+                nEl.textContent = '0';
+                meanEl.textContent = '0.00';
+                varEl.textContent = '0.00';
+                sdEl.textContent = '0.00';
+
+                return;
+            }
+
+            const mean =
+                numbers.reduce((a, b) => a + b, 0) / count;
+
+            const variance =
+                count > 1
+                    ? numbers.reduce(
+                        (sum, n) => sum + Math.pow(n - mean, 2),
+                        0
+                    ) / (count - 1)
+                    : 0;
+
+            const stdDev = Math.sqrt(variance);
+
+            nEl.textContent = count;
+            meanEl.textContent = mean.toFixed(2);
+            varEl.textContent = variance.toFixed(2);
+            sdEl.textContent = stdDev.toFixed(2);
         }
 
-        if (themeName === 'gradient') {
-            activeButton =
-                document.getElementById('themeGradBtn');
+
+        // ==========================================
+        // MODAL CONTROLS
+        // ==========================================
+
+        function openModal(modalId) {
+
+            const modal = document.getElementById(modalId);
+
+            if (modal) {
+                modal.classList.remove('hidden');
+            }
         }
 
-        if (themeName === 'light') {
-            activeButton =
-                document.getElementById('themeLightBtn');
+
+        function closeModal(modalId) {
+
+            const modal = document.getElementById(modalId);
+
+            if (modal) {
+                modal.classList.add('hidden');
+            }
         }
 
 
-        if (activeButton) {
+        // ==========================================
+        // THEME SWITCHER
+        // ==========================================
 
-            activeButton.classList.remove(
-                'text-slate-400'
-            );
+        function setTheme(themeName) {
 
-            activeButton.classList.add(
-                'bg-cyan-500/20',
-                'text-cyan-300',
-                'border',
-                'border-cyan-500/30'
-            );
-        }
-    }
+            const body = document.getElementById('appBody');
 
+            if (!body) return;
 
-    // ==========================================
-    // COURSE TO DEPARTMENT MAPPING
-    // ==========================================
+            body.className =
+                'min-h-screen transition-colors duration-500 font-sans pb-12';
 
-    function getDepartment(course) {
+            if (themeName === 'dark') {
 
-        if (
-            course.includes('MSCs') ||
-            course.includes('MPCs') ||
-            course.includes('MECs')
-        ) {
-            return 'B.Sc Physical Sciences';
-        }
+                body.classList.add(
+                    'bg-[#0b0f19]',
+                    'text-slate-100'
+                );
 
-        if (
-            course.includes('Biotech')
-        ) {
-            return 'B.Sc Life Sciences';
-        }
+            } else if (themeName === 'gradient') {
 
-        if (
-            course.includes('Data Science') ||
-            course.includes('BCA')
-        ) {
-            return 'B.Sc Applied & Data Sciences';
+                body.classList.add(
+                    'gradient-theme',
+                    'text-slate-100'
+                );
+
+            } else if (themeName === 'light') {
+
+                body.classList.add('light');
+
+            }
+
+            localStorage.setItem('academiaPulseTheme', themeName);
+            updateThemeButtons(themeName);
         }
 
-        if (
-            course.includes('B.Tech')
-        ) {
-            return 'Engineering & Tech';
+
+        function updateThemeButtons(themeName) {
+
+            const buttons = [
+                'themeDarkBtn',
+                'themeGradBtn',
+                'themeLightBtn'
+            ];
+
+            buttons.forEach(id => {
+
+                const button = document.getElementById(id);
+
+                if (!button) return;
+
+                button.classList.remove(
+                    'bg-cyan-500/20',
+                    'text-cyan-300',
+                    'border',
+                    'border-cyan-500/30'
+                );
+
+                button.classList.add(
+                    'text-slate-400'
+                );
+            });
+
+
+            let activeButton = null;
+
+            if (themeName === 'dark') {
+                activeButton =
+                    document.getElementById('themeDarkBtn');
+            }
+
+            if (themeName === 'gradient') {
+                activeButton =
+                    document.getElementById('themeGradBtn');
+            }
+
+            if (themeName === 'light') {
+                activeButton =
+                    document.getElementById('themeLightBtn');
+            }
+
+
+            if (activeButton) {
+
+                activeButton.classList.remove(
+                    'text-slate-400'
+                );
+
+                activeButton.classList.add(
+                    'bg-cyan-500/20',
+                    'text-cyan-300',
+                    'border',
+                    'border-cyan-500/30'
+                );
+            }
         }
 
-        if (
-            course.includes('B.Com') ||
-            course.includes('BBA')
-        ) {
-            return 'Commerce & Finance';
+
+        // ==========================================
+        // COURSE TO DEPARTMENT MAPPING
+        // ==========================================
+
+        function getDepartment(course) {
+
+            if (
+                course.includes('MSCs') ||
+                course.includes('MPCs') ||
+                course.includes('MECs')
+            ) {
+                return 'B.Sc Physical Sciences';
+            }
+
+            if (
+                course.includes('Biotech')
+            ) {
+                return 'B.Sc Life Sciences';
+            }
+
+            if (
+                course.includes('Data Science') ||
+                course.includes('BCA')
+            ) {
+                return 'B.Sc Applied & Data Sciences';
+            }
+
+            if (
+                course.includes('B.Tech')
+            ) {
+                return 'Engineering & Tech';
+            }
+
+            if (
+                course.includes('B.Com') ||
+                course.includes('BBA')
+            ) {
+                return 'Commerce & Finance';
+            }
+
+            if (
+                course.includes('B.A.')
+            ) {
+                return 'Arts, Humanities & Law';
+            }
+
+            return 'Other';
         }
 
-        if (
-            course.includes('B.A.')
-        ) {
-            return 'Arts, Humanities & Law';
+
+        // ==========================================
+        // GPA CALCULATION
+        // ==========================================
+
+        function calculateGPA(finalScore) {
+
+            if (finalScore >= 90) return 10.0;
+            if (finalScore >= 80) return 9.0;
+            if (finalScore >= 70) return 8.0;
+            if (finalScore >= 60) return 7.0;
+            if (finalScore >= 50) return 6.0;
+            if (finalScore >= 40) return 5.0;
+
+            return 0.0;
         }
 
-        return 'Other';
-    }
 
+        // ==========================================
+        // OUTCOME CALCULATION
+        // ==========================================
 
-    // ==========================================
-    // GPA CALCULATION
-    // ==========================================
+        function getOutcome(finalScore) {
 
-    function calculateGPA(finalScore) {
+            if (finalScore >= 85) {
+                return 'Excellent';
+            }
 
-        if (finalScore >= 90) return 10.0;
-        if (finalScore >= 80) return 9.0;
-        if (finalScore >= 70) return 8.0;
-        if (finalScore >= 60) return 7.0;
-        if (finalScore >= 50) return 6.0;
-        if (finalScore >= 40) return 5.0;
+            if (finalScore >= 70) {
+                return 'Good';
+            }
 
-        return 0.0;
-    }
+            if (finalScore >= 50) {
+                return 'Average';
+            }
 
-
-    // ==========================================
-    // OUTCOME CALCULATION
-    // ==========================================
-
-    function getOutcome(finalScore) {
-
-        if (finalScore >= 85) {
-            return 'Excellent';
+            return 'Needs Support';
         }
 
-        if (finalScore >= 70) {
-            return 'Good';
-        }
 
-        if (finalScore >= 50) {
-            return 'Average';
-        }
+        // ==========================================
+        // STUDENT TABLE
+        // ==========================================
 
-        return 'Needs Support';
-    }
+        function renderStudentTable(dataset) {
 
+            const tableBody =
+                document.getElementById('studentTableBody');
 
-    // ==========================================
-    // STUDENT TABLE
-    // ==========================================
+            if (!tableBody) return;
 
-    function renderStudentTable(dataset) {
-
-        const tableBody =
-            document.getElementById('studentTableBody');
-
-        if (!tableBody) return;
-
-        tableBody.innerHTML = '';
+            tableBody.innerHTML = '';
 
 
-        if (dataset.length === 0) {
+            if (dataset.length === 0) {
 
-            tableBody.innerHTML = `
+                tableBody.innerHTML = `
                 <tr>
                     <td colspan="9"
                         class="text-center py-8 text-slate-500">
@@ -1474,20 +1331,20 @@
                 </tr>
             `;
 
-            return;
-        }
+                return;
+            }
 
 
-        dataset.forEach(student => {
+            dataset.forEach(student => {
 
-            const row =
-                document.createElement('tr');
+                const row =
+                    document.createElement('tr');
 
-            row.className =
-                'hover:bg-slate-800/40 transition-colors';
+                row.className =
+                    'hover:bg-slate-800/40 transition-colors';
 
 
-            row.innerHTML = `
+                row.innerHTML = `
 
                 <td class="py-3 px-3 font-mono text-cyan-400">
                     ${student.id}
@@ -1535,153 +1392,154 @@
                 </td>
             `;
 
-            tableBody.appendChild(row);
-        });
-    }
-
-
-    // ==========================================
-    // APPLY FILTERS
-    // ==========================================
-
-    function applyFilters() {
-
-        const deptFilter =
-            document.getElementById('deptFilter').value;
-
-        const attendanceSlider =
-            document.getElementById('attendanceSlider');
-
-        const minAttendance =
-            Number(attendanceSlider.value);
-
-
-        document.getElementById('attendanceVal')
-            .textContent = ${minAttendance}%;
-
-
-        filteredDataset =
-            rawDataset.filter(student => {
-
-                const department =
-                    getDepartment(student.course);
-
-                const matchesDepartment =
-                    deptFilter === 'ALL' ||
-                    department === deptFilter;
-
-                const matchesAttendance =
-                    student.attendance >= minAttendance;
-
-                return (
-                    matchesDepartment &&
-                    matchesAttendance
-                );
+                tableBody.appendChild(row);
             });
-
-
-        updateKPIs(filteredDataset);
-
-        renderStudentTable(filteredDataset);
-
-        updateCharts(filteredDataset);
-    }
-
-
-    // ==========================================
-    // KPI METRICS
-    // ==========================================
-
-    function updateKPIs(dataset) {
-
-        const countEl =
-            document.getElementById('kpiCount');
-
-        const attendanceEl =
-            document.getElementById('kpiAttendance');
-
-        const scoreEl =
-            document.getElementById('kpiScore');
-
-
-        if (dataset.length === 0) {
-
-            countEl.textContent = '0 Students';
-
-            attendanceEl.textContent = '--%';
-
-            scoreEl.textContent = '-- / 100';
-
-            return;
         }
 
 
-        const averageAttendance =
-            dataset.reduce(
-                (sum, student) =>
-                    sum + student.attendance,
-                0
-            ) / dataset.length;
+        // ==========================================
+        // APPLY FILTERS
+        // ==========================================
+
+        function applyFilters() {
+
+            const deptFilter =
+                document.getElementById('deptFilter').value;
+
+            const attendanceSlider =
+                document.getElementById('attendanceSlider');
+
+            const minAttendance =
+                Number(attendanceSlider.value);
 
 
-        const averageScore =
-            dataset.reduce(
-                (sum, student) =>
-                    sum + student.final,
-                0
-            ) / dataset.length;
+            document.getElementById("attendanceVal")
+                .textContent = `${minAttendance}%`;
 
 
-        countEl.textContent =
-            ${dataset.length} Students;
+            filteredDataset =
+                rawDataset.filter(student => {
 
-        attendanceEl.textContent =
-            ${averageAttendance.toFixed(1)}%;
+                    const department =
+                        getDepartment(student.course);
 
-        scoreEl.textContent =
-            ${averageScore.toFixed(1)} / 100;
-    }
+                    const matchesDepartment =
+                        deptFilter === 'ALL' ||
+                        department === deptFilter;
 
+                    const matchesAttendance =
+                        student.attendance >= minAttendance;
 
-    // ==========================================
-    // STUDENT ID INSPECTOR
-    // ==========================================
-
-    function inspectStudent() {
-
-        const searchInput =
-            document.getElementById('inspectorSearch');
-
-        const result =
-            document.getElementById('inspectorResult');
+                    return (
+                        matchesDepartment &&
+                        matchesAttendance
+                    );
+                });
 
 
-        const query =
-            searchInput.value.trim().toLowerCase();
+            updateKPIs(filteredDataset);
+
+            renderStudentTable(filteredDataset);
+
+            updateCharts(filteredDataset);
+        }
 
 
-        if (query === '') {
+        // ==========================================
+        // KPI METRICS
+        // ==========================================
 
-            result.innerHTML = `
+        function updateKPIs(dataset) {
+
+            const countEl =
+                document.getElementById('kpiCount');
+
+            const attendanceEl =
+                document.getElementById('kpiAttendance');
+
+            const scoreEl =
+                document.getElementById('kpiScore');
+
+
+            if (dataset.length === 0) {
+
+                countEl.textContent = '0 Students';
+
+                attendanceEl.textContent = '--%';
+
+                scoreEl.textContent = '-- / 100';
+
+                return;
+            }
+
+
+            const averageAttendance =
+                dataset.reduce(
+                    (sum, student) =>
+                        sum + student.attendance,
+                    0
+                ) / dataset.length;
+
+
+            const averageScore =
+                dataset.reduce(
+                    (sum, student) =>
+                        sum + student.final,
+                    0
+                ) / dataset.length;
+
+
+            countEl.textContent =
+                `${dataset.length} Students`;
+
+            attendanceEl.textContent =
+                `${averageAttendance.toFixed(1)}%`;
+
+
+            scoreEl.textContent =
+                `${averageScore.toFixed(1)} / 100`;
+        }
+
+
+        // ==========================================
+        // STUDENT ID INSPECTOR
+        // ==========================================
+
+        function inspectStudent() {
+
+            const searchInput =
+                document.getElementById('inspectorSearch');
+
+            const result =
+                document.getElementById('inspectorResult');
+
+
+            const query =
+                searchInput.value.trim().toLowerCase();
+
+
+            if (query === '') {
+
+                result.innerHTML = `
                 <p class="text-slate-500 text-xs italic text-center">
                     Type any student ID above to instantly view
                     full profile metrics.
                 </p>
             `;
 
-            return;
-        }
+                return;
+            }
 
 
-        const student =
-            rawDataset.find(item =>
-                item.id.toLowerCase().includes(query)
-            );
+            const student =
+                rawDataset.find(item =>
+                    item.id.toLowerCase().includes(query)
+                );
 
 
-        if (!student) {
+            if (!student) {
 
-            result.innerHTML = `
+                result.innerHTML = `
                 <div class="text-center">
 
                     <i class="fa-solid fa-user-slash
@@ -1695,11 +1553,11 @@
                 </div>
             `;
 
-            return;
-        }
+                return;
+            }
 
 
-        result.innerHTML = `
+            result.innerHTML = `
 
             <div class="w-full">
 
@@ -1772,753 +1630,286 @@
 
             </div>
         `;
-    }
-    // ==========================================
-    // ADD STUDENT
-    // ==========================================
-
-    function handleAddStudent(event) {
-
-        event.preventDefault();
-
-        const id =
-            document.getElementById('addId').value.trim();
-
-        const name =
-            document.getElementById('addName').value.trim();
-
-        const course =
-            document.getElementById('addCourse').value;
-
-        const attendance =
-            Number(
-                document.getElementById('addAttendance').value
-            );
-
-        const internal =
-            Number(
-                document.getElementById('addInternal').value
-            );
-
-        const finalScore =
-            Number(
-                document.getElementById('addFinal').value
-            );
-
-
-        if (
-            !id ||
-            !name ||
-            isNaN(attendance) ||
-            isNaN(internal) ||
-            isNaN(finalScore)
-        ) {
-
-            alert(
-                'Please enter valid student details.'
-            );
-
-            return;
         }
+        // ==========================================
+        // ADD STUDENT
+        // ==========================================
+
+        function handleAddStudent(event) {
+
+            event.preventDefault();
+
+            const id =
+                document.getElementById('addId').value.trim();
+
+            const name =
+                document.getElementById('addName').value.trim();
+
+            const course =
+                document.getElementById('addCourse').value;
+
+            const attendance =
+                Number(
+                    document.getElementById('addAttendance').value
+                );
+
+            const internal =
+                Number(
+                    document.getElementById('addInternal').value
+                );
+
+            const finalScore =
+                Number(
+                    document.getElementById('addFinal').value
+                );
 
 
-        const existingStudent =
-            rawDataset.some(student =>
-                student.id.toLowerCase() ===
-                id.toLowerCase()
-            );
-
-
-        if (existingStudent) {
-
-            alert(
-                'A student with this ID already exists.'
-            );
-
-            return;
-        }
-
-
-        const newStudent = {
-
-            id: id,
-
-            name: name,
-
-            course: course,
-
-            attendance: attendance,
-
-            internal: internal,
-
-            final: finalScore
-
-        };
-
-
-        rawDataset.push(newStudent);
-
-
-        document.querySelector(
-            '#addModal form'
-        ).reset();
-
-
-        closeModal('addModal');
-
-        applyFilters();
-
-        alert(
-            'Student record added successfully!'
-        );
-    }
-
-
-    // ==========================================
-    // DELETE STUDENT
-    // ==========================================
-
-    function deleteStudent(studentId) {
-
-        const confirmed =
-            confirm(
-                'Are you sure you want to delete this student?'
-            );
-
-
-        if (!confirmed) return;
-
-
-        rawDataset =
-            rawDataset.filter(
-                student => student.id !== studentId
-            );
-
-
-        applyFilters();
-
-        inspectStudent();
-    }
-
-
-    // ==========================================
-    // BATCH CSV IMPORT
-    // ==========================================
-
-    function handleBatchImport() {
-
-        const fileInput =
-            document.getElementById('csvFile');
-
-        const file =
-            fileInput.files[0];
-
-
-        if (!file) {
-
-            alert(
-                'Please select a CSV file first.'
-            );
-
-            return;
-        }
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload = function(event) {
-
-            const text =
-                event.target.result;
-
-
-            const lines =
-                text.split(/\r?\n/)
-                    .filter(line => line.trim() !== '');
-
-
-            if (lines.length < 2) {
+            if (
+                !id ||
+                !name ||
+                isNaN(attendance) ||
+                isNaN(internal) ||
+                isNaN(finalScore)
+            ) {
 
                 alert(
-                    'The CSV file does not contain enough data.'
+                    'Please enter valid student details.'
                 );
 
                 return;
             }
 
 
-            const importedStudents = [];
-
-
-            for (
-                let i = 1;
-                i < lines.length;
-                i++
-            ) {
-
-                const columns =
-                    lines[i].split(',');
-
-
-                if (columns.length < 6) {
-                    continue;
-                }
-
-
-                const student = {
-
-                    id: columns[0].trim(),
-
-                    name: columns[1].trim(),
-
-                    course: columns[2].trim(),
-
-                    attendance:
-                        Number(
-                            columns[3].trim()
-                        ),
-
-                    internal:
-                        Number(
-                            columns[4].trim()
-                        ),
-
-                    final:
-                        Number(
-                            columns[5].trim()
-                        )
-                };
-
-
-                if (
-                    student.id &&
-                    student.name &&
-                    !isNaN(student.attendance) &&
-                    !isNaN(student.internal) &&
-                    !isNaN(student.final)
-                ) {
-
-                    importedStudents.push(student);
-                }
-            }
-
-
-            rawDataset =
-                rawDataset.concat(
-                    importedStudents
+            const existingStudent =
+                rawDataset.some(student =>
+                    student.id.toLowerCase() ===
+                    id.toLowerCase()
                 );
 
 
-            closeModal('importModal');
+            if (existingStudent) {
 
-            fileInput.value = '';
+                alert(
+                    'A student with this ID already exists.'
+                );
+
+                return;
+            }
+
+
+            const newStudent = {
+
+                id: id,
+
+                name: name,
+
+                course: course,
+
+                attendance: attendance,
+
+                internal: internal,
+
+                final: finalScore
+
+            };
+
+
+            rawDataset.push(newStudent);
+
+
+            document.querySelector(
+                '#addModal form'
+            ).reset();
+
+
+            closeModal('addModal');
 
             applyFilters();
 
-
             alert(
-                ${importedStudents.length} student records imported successfully!
+                'Student record added successfully!'
             );
-        };
-
-
-        reader.readAsText(file);
-    }
-
-
-    // ==========================================
-    // RESET DATASET
-    // ==========================================
-
-    function resetDataset() {
-
-        const confirmed =
-            confirm(
-                'Reset the dataset to the original sample data?'
-            );
-
-
-        if (!confirmed) return;
-
-
-        rawDataset =
-            JSON.parse(
-                JSON.stringify(sampleDataset)
-            );
-
-
-        applyFilters();
-
-        inspectStudent();
-    }
-
-
-    // ==========================================
-    // CHARTS
-    // ==========================================
-
-    function updateCharts(dataset) {
-
-        updateScoreHistogram(dataset);
-
-        updateScatterChart(dataset);
-
-        updateTrendChart(dataset);
-
-        updateOutcomeChart(dataset);
-    }
-
-
-    // ==========================================
-    // SCORE HISTOGRAM
-    // ==========================================
-
-    function updateScoreHistogram(dataset) {
-
-        const canvas =
-            document.getElementById('scoreHistogram');
-
-        if (!canvas) return;
-
-
-        const ranges = [
-            '0-49',
-            '50-59',
-            '60-69',
-            '70-79',
-            '80-89',
-            '90-100'
-        ];
-
-
-        const counts = [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-        ];
-
-
-        dataset.forEach(student => {
-
-            const score =
-                student.final;
-
-
-            if (score < 50) counts[0]++;
-
-            else if (score < 60) counts[1]++;
-
-            else if (score < 70) counts[2]++;
-
-            else if (score < 80) counts[3]++;
-
-            else if (score < 90) counts[4]++;
-
-            else counts[5]++;
-        });
-
-
-        if (scoreHistogramChart) {
-
-            scoreHistogramChart.destroy();
         }
 
 
-        scoreHistogramChart =
-            new Chart(
-                canvas,
-                {
+        // ==========================================
+        // DELETE STUDENT
+        // ==========================================
 
-                    type: 'bar',
+        function deleteStudent(studentId) {
 
-                    data: {
-
-                        labels: ranges,
-
-                        datasets: [
-
-                            {
-                                label: 'Students',
-
-                                data: counts,
-
-                                backgroundColor:
-                                    'rgba(0, 242, 254, 0.6)',
-
-                                borderColor:
-                                    '#00f2fe',
-
-                                borderWidth: 1
-                            }
-
-                        ]
-                    },
-
-                    options: {
-
-                        responsive: true,
-
-                        maintainAspectRatio: false,
-
-                        plugins: {
-
-                            legend: {
-                                display: false
-                            }
-
-                        },
-
-                        scales: {
-
-                            y: {
-
-                                beginAtZero: true,
-
-                                ticks: {
-                                    precision: 0
-                                }
-
-                            }
-
-                        }
-                    }
-                }
-            );
-    }
+            const confirmed =
+                confirm(
+                    'Are you sure you want to delete this student?'
+                );
 
 
-    // ==========================================
-    // ATTENDANCE VS FINAL SCORE
-    // ==========================================
-
-    function updateScatterChart(dataset) {
-
-        const canvas =
-            document.getElementById('scatterPlot');
-
-        if (!canvas) return;
+            if (!confirmed) return;
 
 
-        const points =
-            dataset.map(student => ({
-
-                x: student.attendance,
-
-                y: student.final
-
-            }));
+            rawDataset =
+                rawDataset.filter(
+                    student => student.id !== studentId
+                );
 
 
-        if (scatterChart) {
+            applyFilters();
 
-            scatterChart.destroy();
+            inspectStudent();
         }
 
 
-        scatterChart =
-            new Chart(
-                canvas,
-                {
+        // ==========================================
+        // BATCH CSV IMPORT
+        // ==========================================
 
-                    type: 'scatter',
+        function handleBatchImport() {
 
-                    data: {
+            const fileInput =
+                document.getElementById('csvFile');
 
-                        datasets: [
+            const file =
+                fileInput.files[0];
 
-                            {
-                                label:
-                                    'Attendance vs Final Score',
 
-                                data: points,
+            if (!file) {
 
-                                backgroundColor:
-                                    'rgba(20, 184, 166, 0.7)',
+                alert(
+                    'Please select a CSV file first.'
+                );
 
-                                borderColor:
-                                    '#14b8a6',
+                return;
+            }
 
-                                pointRadius: 5
-                            }
 
-                        ]
-                    },
+            const reader =
+                new FileReader();
 
-                    options: {
 
-                        responsive: true,
+            reader.onload = function (event) {
 
-                        maintainAspectRatio: false,
+                const text =
+                    event.target.result;
 
-                        scales: {
 
-                            x: {
+                const lines =
+                    text.split(/\r?\n/)
+                        .filter(line => line.trim() !== '');
 
-                                title: {
-                                    display: true,
-                                    text: 'Attendance %'
-                                },
 
-                                min: 50,
+                if (lines.length < 2) {
 
-                                max: 100
+                    alert(
+                        'The CSV file does not contain enough data.'
+                    );
 
-                            },
+                    return;
+                }
 
-                            y: {
 
-                                title: {
-                                    display: true,
-                                    text: 'Final Score'
-                                },
+                const importedStudents = [];
 
-                                min: 0,
 
-                                max: 100
+                for (
+                    let i = 1;
+                    i < lines.length;
+                    i++
+                ) {
 
-                            }
+                    const columns =
+                        lines[i].split(',');
 
+
+                    if (columns.length < 6) {
+                        continue;
+                    }
+
+
+                    const student = {
+
+                        id: columns[0].trim(),
+
+                        name: columns[1].trim(),
+
+                        course: columns[2].trim(),
+
+                        attendance:
+                            Number(
+                                columns[3].trim()
+                            ),
+
+                        internal:
+                            Number(
+                                columns[4].trim()
+                            ),
+
+                        final:
+                            Number(
+                                columns[5].trim()
+                            )
+                    };
+
+
+                    if (
+                        student.id &&
+                        student.name &&
+                        !isNaN(student.attendance) &&
+                        !isNaN(student.internal) &&
+                        !isNaN(student.final)
+                    ) {
+
+                        const normalizedId = student.id.toLowerCase();
+
+                        const duplicate = rawDataset.some(existing =>
+                            existing.id.toLowerCase() === normalizedId
+                        ) || importedStudents.some(existing =>
+                            existing.id.toLowerCase() === normalizedId
+                        );
+
+                        if (!duplicate) {
+                            importedStudents.push(student);
                         }
-
                     }
                 }
-            );
-    }
 
 
-    // ==========================================
-    // PERFORMANCE TREND
-    // ==========================================
-
-    function updateTrendChart(dataset) {
-
-        const canvas =
-            document.getElementById('trendChart');
-
-        if (!canvas) return;
+                rawDataset =
+                    rawDataset.concat(
+                        importedStudents
+                    );
 
 
-        const averageScore =
-            dataset.length > 0
+                closeModal('importModal');
 
-                ? dataset.reduce(
-                    (sum, student) =>
-                        sum + student.final,
-                    0
-                ) / dataset.length
+                fileInput.value = '';
 
-                : 0;
+                applyFilters();
 
 
-        const values = [
-
-            Math.max(
-                0,
-                averageScore - 6
-            ),
-
-            Math.max(
-                0,
-                averageScore - 3
-            ),
-
-            averageScore,
-
-            Math.min(
-                100,
-                averageScore + 2
-            ),
-
-            Math.min(
-                100,
-                averageScore + 4
-            )
-
-        ];
+                alert(
+                    `${importedStudents.length} student records imported successfully!`
+                );
+            };
 
 
-        if (trendChartInstance) {
-
-            trendChartInstance.destroy();
+            reader.readAsText(file);
         }
 
 
-        trendChartInstance =
-            new Chart(
-                canvas,
-                {
+        // ==========================================
+        // RESET DATASET
+        // ==========================================
 
-                    type: 'line',
+        function resetDataset() {
 
-                    data: {
+            const confirmed =
+                confirm(
+                    'Reset the dataset to the original sample data?'
+                );
 
-                        labels: [
-                            '2022',
-                            '2023',
-                            '2024',
-                            '2025',
-                            '2026'
-                        ],
 
-                        datasets: [
+            if (!confirmed) return;
 
-                            {
-                                label:
-                                    'Average Final Score',
-
-                                data: values,
-
-                                borderColor:
-                                    '#a855f7',
-
-                                backgroundColor:
-                                    'rgba(168, 85, 247, 0.15)',
-
-                                fill: true,
-
-                                tension: 0.4
-                            }
-
-                        ]
-                    },
-
-                    options: {
-
-                        responsive: true,
-
-                        maintainAspectRatio: false,
-
-                        scales: {
-
-                            y: {
-
-                                beginAtZero: true,
-
-                                max: 100
-
-                            }
-
-                        }
-
-                    }
-                }
-            );
-    }
-
-
-    // ==========================================
-    // PLACEMENT OUTCOME CHART
-    // ==========================================
-
-    function updateOutcomeChart(dataset) {
-
-        const canvas =
-            document.getElementById('outcomeChart');
-
-        if (!canvas) return;
-
-
-        const outcomes = {
-
-            Excellent: 0,
-
-            Good: 0,
-
-            Average: 0,
-
-            'Needs Support': 0
-
-        };
-
-
-        dataset.forEach(student => {
-
-            const outcome =
-                getOutcome(student.final);
-
-            outcomes[outcome]++;
-        });
-
-
-        if (outcomeChartInstance) {
-
-            outcomeChartInstance.destroy();
-        }
-
-
-        outcomeChartInstance =
-            new Chart(
-                canvas,
-                {
-
-                    type: 'doughnut',
-
-                    data: {
-
-                        labels:
-                            Object.keys(outcomes),
-
-                        datasets: [
-
-                            {
-
-                                data:
-                                    Object.values(outcomes),
-
-                                backgroundColor: [
-
-                                    '#00f2fe',
-
-                                    '#14b8a6',
-
-                                    '#a855f7',
-
-                                    '#ec4899'
-
-                                ],
-
-                                borderWidth: 1
-
-                            }
-
-                        ]
-                    },
-
-                    options: {
-
-                        responsive: true,
-
-                        maintainAspectRatio: false,
-
-                        plugins: {
-
-                            legend: {
-
-                                position: 'bottom'
-
-                            }
-
-                        }
-
-                    }
-
-                }
-            );
-    }
-
-
-    // ==========================================
-    // PAGE INITIALIZATION
-    // ==========================================
-
-    document.addEventListener(
-        'DOMContentLoaded',
-        function() {
 
             rawDataset =
                 JSON.parse(
@@ -2526,18 +1917,503 @@
                 );
 
 
-            setTheme('dark');
-
-
-            calculateCustomStats('');
-
-
             applyFilters();
 
+            inspectStudent();
         }
-    );
 
-</script>
+
+        // ==========================================
+        // CHARTS
+        // ==========================================
+
+        function updateCharts(dataset) {
+
+            updateScoreHistogram(dataset);
+
+            updateScatterChart(dataset);
+
+            updateTrendChart(dataset);
+
+            updateOutcomeChart(dataset);
+        }
+
+
+        // ==========================================
+        // SCORE HISTOGRAM
+        // ==========================================
+
+        function updateScoreHistogram(dataset) {
+
+            const canvas =
+                document.getElementById('scoreHistogram');
+
+            if (!canvas) return;
+
+
+            const ranges = [
+                '0-49',
+                '50-59',
+                '60-69',
+                '70-79',
+                '80-89',
+                '90-100'
+            ];
+
+
+            const counts = [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ];
+
+
+            dataset.forEach(student => {
+
+                const score =
+                    student.final;
+
+
+                if (score < 50) counts[0]++;
+
+                else if (score < 60) counts[1]++;
+
+                else if (score < 70) counts[2]++;
+
+                else if (score < 80) counts[3]++;
+
+                else if (score < 90) counts[4]++;
+
+                else counts[5]++;
+            });
+
+
+            if (scoreHistogramChart) {
+
+                scoreHistogramChart.destroy();
+            }
+
+
+            scoreHistogramChart =
+                new Chart(
+                    canvas,
+                    {
+
+                        type: 'bar',
+
+                        data: {
+
+                            labels: ranges,
+
+                            datasets: [
+
+                                {
+                                    label: 'Students',
+
+                                    data: counts,
+
+                                    backgroundColor:
+                                        'rgba(0, 242, 254, 0.6)',
+
+                                    borderColor:
+                                        '#00f2fe',
+
+                                    borderWidth: 1
+                                }
+
+                            ]
+                        },
+
+                        options: {
+
+                            responsive: true,
+
+                            maintainAspectRatio: false,
+
+                            plugins: {
+
+                                legend: {
+                                    display: false
+                                }
+
+                            },
+
+                            scales: {
+
+                                y: {
+
+                                    beginAtZero: true,
+
+                                    ticks: {
+                                        precision: 0
+                                    }
+
+                                }
+
+                            }
+                        }
+                    }
+                );
+        }
+
+
+        // ==========================================
+        // ATTENDANCE VS FINAL SCORE
+        // ==========================================
+
+        function updateScatterChart(dataset) {
+
+            const canvas =
+                document.getElementById('scatterPlot');
+
+            if (!canvas) return;
+
+
+            const points =
+                dataset.map(student => ({
+
+                    x: student.attendance,
+
+                    y: student.final
+
+                }));
+
+
+            if (scatterChart) {
+
+                scatterChart.destroy();
+            }
+
+
+            scatterChart =
+                new Chart(
+                    canvas,
+                    {
+
+                        type: 'scatter',
+
+                        data: {
+
+                            datasets: [
+
+                                {
+                                    label:
+                                        'Attendance vs Final Score',
+
+                                    data: points,
+
+                                    backgroundColor:
+                                        'rgba(20, 184, 166, 0.7)',
+
+                                    borderColor:
+                                        '#14b8a6',
+
+                                    pointRadius: 5
+                                }
+
+                            ]
+                        },
+
+                        options: {
+
+                            responsive: true,
+
+                            maintainAspectRatio: false,
+
+                            scales: {
+
+                                x: {
+
+                                    title: {
+                                        display: true,
+                                        text: 'Attendance %'
+                                    },
+
+                                    min: 50,
+
+                                    max: 100
+
+                                },
+
+                                y: {
+
+                                    title: {
+                                        display: true,
+                                        text: 'Final Score'
+                                    },
+
+                                    min: 0,
+
+                                    max: 100
+
+                                }
+
+                            }
+
+                        }
+                    }
+                );
+        }
+
+
+        // ==========================================
+        // PERFORMANCE TREND
+        // ==========================================
+
+        function updateTrendChart(dataset) {
+
+            const canvas =
+                document.getElementById('trendChart');
+
+            if (!canvas) return;
+
+
+            const averageScore =
+                dataset.length > 0
+
+                    ? dataset.reduce(
+                        (sum, student) =>
+                            sum + student.final,
+                        0
+                    ) / dataset.length
+
+                    : 0;
+
+
+            const values = [
+
+                Math.max(
+                    0,
+                    averageScore - 6
+                ),
+
+                Math.max(
+                    0,
+                    averageScore - 3
+                ),
+
+                averageScore,
+
+                Math.min(
+                    100,
+                    averageScore + 2
+                ),
+
+                Math.min(
+                    100,
+                    averageScore + 4
+                )
+
+            ];
+
+
+            if (trendChartInstance) {
+
+                trendChartInstance.destroy();
+            }
+
+
+            trendChartInstance =
+                new Chart(
+                    canvas,
+                    {
+
+                        type: 'line',
+
+                        data: {
+
+                            labels: [
+                                '2022',
+                                '2023',
+                                '2024',
+                                '2025',
+                                '2026'
+                            ],
+
+                            datasets: [
+
+                                {
+                                    label:
+                                        'Average Final Score',
+
+                                    data: values,
+
+                                    borderColor:
+                                        '#a855f7',
+
+                                    backgroundColor:
+                                        'rgba(168, 85, 247, 0.15)',
+
+                                    fill: true,
+
+                                    tension: 0.4
+                                }
+
+                            ]
+                        },
+
+                        options: {
+
+                            responsive: true,
+
+                            maintainAspectRatio: false,
+
+                            scales: {
+
+                                y: {
+
+                                    beginAtZero: true,
+
+                                    max: 100
+
+                                }
+
+                            }
+
+                        }
+                    }
+                );
+        }
+
+
+        // ==========================================
+        // PLACEMENT OUTCOME CHART
+        // ==========================================
+
+        function updateOutcomeChart(dataset) {
+
+            const canvas =
+                document.getElementById('outcomeChart');
+
+            if (!canvas) return;
+
+
+            const outcomes = {
+
+                Excellent: 0,
+
+                Good: 0,
+
+                Average: 0,
+
+                'Needs Support': 0
+
+            };
+
+
+            dataset.forEach(student => {
+
+                const outcome =
+                    getOutcome(student.final);
+
+                outcomes[outcome]++;
+            });
+
+
+            if (outcomeChartInstance) {
+
+                outcomeChartInstance.destroy();
+            }
+
+
+            outcomeChartInstance =
+                new Chart(
+                    canvas,
+                    {
+
+                        type: 'doughnut',
+
+                        data: {
+
+                            labels:
+                                Object.keys(outcomes),
+
+                            datasets: [
+
+                                {
+
+                                    data:
+                                        Object.values(outcomes),
+
+                                    backgroundColor: [
+
+                                        '#00f2fe',
+
+                                        '#14b8a6',
+
+                                        '#a855f7',
+
+                                        '#ec4899'
+
+                                    ],
+
+                                    borderWidth: 1
+
+                                }
+
+                            ]
+                        },
+
+                        options: {
+
+                            responsive: true,
+
+                            maintainAspectRatio: false,
+
+                            plugins: {
+
+                                legend: {
+
+                                    position: 'bottom'
+
+                                }
+
+                            }
+
+                        }
+
+                    }
+                );
+        }
+
+
+        // ==========================================
+        // PAGE INITIALIZATION
+        // ==========================================
+
+        document.addEventListener(
+            'DOMContentLoaded',
+            function () {
+
+                rawDataset =
+                    JSON.parse(
+                        JSON.stringify(sampleDataset)
+                    );
+
+                const storedTheme =
+                    localStorage.getItem('academiaPulseTheme');
+
+                if (
+                    storedTheme === 'dark' ||
+                    storedTheme === 'gradient' ||
+                    storedTheme === 'light'
+                ) {
+                    setTheme(storedTheme);
+                } else {
+                    setTheme('dark');
+                }
+
+                calculateCustomStats('');
+
+                applyFilters();
+
+            }
+        );
+
+    </script>
 
 
 </body>
