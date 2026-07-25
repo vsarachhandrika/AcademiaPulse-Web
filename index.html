@@ -186,15 +186,6 @@
 
             </button>
 
-
-            <button onclick="resetDataset()"
-                class="bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 font-semibold px-3 py-2 rounded-xl text-xs transition-all"
-                title="Reset Dataset">
-
-                <i class="fa-solid fa-rotate-left"></i>
-
-            </button>
-
         </div>
 
     </header>
@@ -1512,7 +1503,7 @@
 
 
                     <div class="bg-slate-800/70 rounded-lg p-2 text-center">
-
+                        
                         <span class="block text-[9px] text-slate-500">
                             Internal
                         </span>
@@ -1818,56 +1809,6 @@
 
 
             reader.readAsText(file);
-        }
-
-
-        // ==========================================
-        // RESET DATASET
-        // ==========================================
-
-        function resetDataset() {
-
-            const confirmed =
-                confirm(
-                    'Clear the current dataset and reset filters?'
-                );
-
-
-            if (!confirmed) return;
-
-
-            rawDataset = [];
-            filteredDataset = [];
-
-            const inspectorSearch =
-                document.getElementById('inspectorSearch');
-            const deptFilter =
-                document.getElementById('deptFilter');
-            const attendanceSlider =
-                document.getElementById('attendanceSlider');
-            const importStatus =
-                document.getElementById('importStatus');
-
-            if (inspectorSearch) {
-                inspectorSearch.value = '';
-            }
-
-            if (deptFilter) {
-                deptFilter.value = 'ALL';
-            }
-
-            if (attendanceSlider) {
-                attendanceSlider.value = 0;
-            }
-
-            if (importStatus) {
-                importStatus.textContent = '';
-            }
-
-            document.getElementById('attendanceVal').textContent = '0%';
-
-            applyFilters();
-            inspectStudent();
         }
 
 
